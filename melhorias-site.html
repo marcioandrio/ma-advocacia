@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melhorias — ma-advocacia.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f5f3ef;
+    font-family: 'Lora', serif;
+    color: #1a0e00;
+    padding: 0 0 80px;
+  }
+
+  /* ── TOPO ── */
+  .topo {
+    background: #1a0e00;
+    color: #fff;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #c9a85c;
+  }
+  .topo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: .1em;
+    color: #c9a85c;
+  }
+  .topo p {
+    font-size: 12px;
+    color: #bdb08a;
+    margin-top: 4px;
+    letter-spacing: .06em;
+  }
+  .badge-site {
+    background: #4a1628;
+    border: 1px solid #c9a85c;
+    color: #c9a85c;
+    padding: 8px 18px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ── RESUMO ── */
+  .resumo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid #ddd5c5;
+  }
+  .resumo-card {
+    padding: 24px 28px;
+    border-right: 1px solid #ddd5c5;
+    background: #fff;
+  }
+  .resumo-card:last-child { border-right: none; }
+  .resumo-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .resumo-card .lbl {
+    font-size: 11px;
+    color: #6b5a3a;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .num.critico { color: #b91c1c; }
+  .num.alto    { color: #c9a85c; }
+  .num.medio   { color: #4a1628; }
+  .num.total   { color: #1a0e00; }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── SECÇÃO ── */
+  .secao-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: #8a6630;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #c9a85c;
+    padding-bottom: 4px;
+    margin: 40px 0 20px;
+  }
+
+  /* ── CARD DE MELHORIA ── */
+  .melhoria {
+    background: #fff;
+    border: 1px solid #e8dfc8;
+    border-left: 4px solid;
+    border-radius: 2px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .melhoria.critico { border-left-color: #b91c1c; }
+  .melhoria.alto    { border-left-color: #c9a85c; }
+  .melhoria.medio   { border-left-color: #4a1628; }
+
+  .melhoria .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .tag.critico { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  .tag.alto    { background: #fdf6ee; color: #92400e; border: 1px solid #fde68a; }
+  .tag.medio   { background: #fdf6ee; color: #4a1628; border: 1px solid #e8dfc8; }
+
+  .melhoria h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a0e00;
+    margin-bottom: 6px;
+  }
+  .melhoria p {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #3a2a1a;
+    margin-bottom: 6px;
+  }
+  .melhoria .fix {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #4a6630;
+    background: #f0f7ea;
+    border-left: 2px solid #4a6630;
+    padding: 6px 12px;
+    margin-top: 8px;
+    border-radius: 0 2px 2px 0;
+  }
+  .melhoria .fix strong { color: #1a4000; }
+
+  /* ── CÓDIGO DE EXEMPLO ── */
+  .codigo {
+    background: #1a0e00;
+    color: #c9a85c;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    padding: 14px 16px;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .codigo .cm { color: #6b5a3a; }
+  .codigo .ct { color: #fff; }
+  .codigo .cv { color: #bdb08a; }
+
+  /* ── COMPARAÇÃO BEFORE/AFTER ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .compare-box {
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+  .compare-box.before {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #7f1d1d;
+  }
+  .compare-box.after {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #14532d;
+  }
+  .compare-box .label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: .7;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .checklist li {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #3a2a1a;
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #c9a85c;
+    font-size: 11px;
+  }
+
+  /* ── FOOTER ── */
+  .footer-rel {
+    background: #1a0e00;
+    color: #6b5a3a;
+    text-align: center;
+    padding: 24px;
+    font-size: 11px;
+    letter-spacing: .08em;
+    margin-top: 60px;
+    border-top: 2px solid #4a1628;
+  }
+  .footer-rel span { color: #c9a85c; }
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+<div class="topo">
+  <div>
+    <h1>RELATÓRIO DE MELHORIAS — SITE</h1>
+    <p>ma-advocacia.com · Análise realizada em 25 de junho de 2026</p>
+  </div>
+  <a class="badge-site" href="https://ma-advocacia.com" target="_blank">↗ Ver Site</a>
+</div>
+
+<!-- RESUMO -->
+<div class="resumo">
+  <div class="resumo-card">
+    <div class="num critico">5</div>
+    <div class="lbl">Problemas críticos</div>
+  </div>
+  <div class="resumo-card">
+    <div class="num alto">5</div>
+    <div class="lbl">Prioridade alta</div>
+  </div>
+  <div class="resumo-card">
+    <div class="num medio">4</div>
+    <div class="lbl">Prioridade média</div>
+  </div>
+  <div class="resumo-card">
+    <div class="num total">14</div>
+    <div class="lbl">Total de melhorias</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ─── CRÍTICOS ─── -->
+<div class="secao-titulo">Problemas Críticos</div>
+
+<div class="melhoria critico">
+  <span class="tag critico">Crítico</span>
+  <div>
+    <h3>Formulário de contacto bloqueado — "CARREGANDO..." infinito</h3>
+    <p>O formulário de Avaliação de Caso fica preso a carregar indefinidamente. Qualquer visitante que queira contactar o escritório não consegue enviar a mensagem. Este é provavelmente o problema mais grave em termos de perda de clientes.</p>
+    <div class="fix"><strong>Correção:</strong> Verificar o plugin/integração responsável pelo formulário no painel WordPress. Se usar Contact Form 7 ou WPForms, reconfigurar o SMTP e testar o envio. Alternativa imediata: substituir por um botão direto para WhatsApp ou e-mail enquanto o problema não é resolvido.</div>
+  </div>
+</div>
+
+<div class="melhoria critico">
+  <span class="tag critico">Crítico</span>
+  <div>
+    <h3>Seletores de idioma não funcionam (javascript:void)</h3>
+    <p>Os botões PT / EN / ES não fazem nada. O site promete atendimento multilingue mas não entrega essa funcionalidade. Visitantes anglófonos e hispanófonos ficam sem versão no seu idioma.</p>
+    <div class="fix"><strong>Correção:</strong> Instalar plugin WPML ou Polylang e criar as versões EN e ES do conteúdo, ou remover os seletores de idioma até estarem funcionais. Seletores que não fazem nada destroem credibilidade.</div>
+  </div>
+</div>
+
+<div class="melhoria critico">
+  <span class="tag critico">Crítico</span>
+  <div>
+    <h3>Número de inscrição na Ordem dos Advogados ausente</h3>
+    <p>Em Portugal é obrigatório que advogados apresentem o número de inscrição na Ordem dos Advogados. A sua ausência reduz a credibilidade e pode levantar dúvidas legais. O site tem um link "verificar ordem" mas não apresenta o número visualmente.</p>
+    <div class="fix"><strong>Correção:</strong> Adicionar no rodapé e na secção "Quem Somos": <br>"Marcio Andrio — Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]"</div>
+  </div>
+</div>
+
+<div class="melhoria critico">
+  <span class="tag critico">Crítico</span>
+  <div>
+    <h3>Política de Privacidade e RGPD ausentes</h3>
+    <p>O site recolhe dados via formulário mas não tem Política de Privacidade, aviso de cookies nem menção ao RGPD (Regulamento Geral de Proteção de Dados). Isto é uma obrigação legal na União Europeia e pode resultar em multas.</p>
+    <div class="fix"><strong>Correção:</strong> Criar página /politica-de-privacidade com: dados tratados, finalidade, base legal, prazo de conservação e direitos do titular. Adicionar banner de cookies (plugin GDPR Cookie Consent). Adicionar link no rodapé.</div>
+  </div>
+</div>
+
+<div class="melhoria critico">
+  <span class="tag critico">Crítico</span>
+  <div>
+    <h3>Blog completamente vazio — "Desculpe, ainda não existe Notícias cadastradas"</h3>
+    <p>A secção de Blog/Notícias aparece no menu mas não tem nenhum conteúdo. Além de passar uma imagem de abandono, é uma oportunidade perdida de SEO e de demonstrar conhecimento jurídico.</p>
+    <div class="fix"><strong>Correção imediata:</strong> Remover o link "Blog" do menu principal até ter conteúdo publicado. <strong>Solução ideal:</strong> Publicar 3 a 5 artigos sobre temas de imigração (NIF, reagrupamento familiar, lei de estrangeiros 2025) — aumenta autoridade e tráfego orgânico.</div>
+  </div>
+</div>
+
+<!-- ─── PRIORIDADE ALTA ─── -->
+<div class="secao-titulo">Prioridade Alta</div>
+
+<div class="melhoria alto">
+  <span class="tag alto">Alta</span>
+  <div>
+    <h3>Mistura de Português do Brasil e Português de Portugal</h3>
+    <p>O site alterna entre "Nossa Equipe" (BR), "Quem somos" (PT) e "Área de Atuação" (BR). O escritório está em Portugal e atende clientes que querem imigrar para Portugal — o idioma padrão deve ser PT-PT.</p>
+    <div class="compare">
+      <div class="compare-box before">
+        <div class="label">❌ Atual</div>
+        Nossa Equipe · Área de Atuação · Assessoria · Auxiliamos
+      </div>
+      <div class="compare-box after">
+        <div class="label">✓ Correto</div>
+        A Nossa Equipa · Áreas de Atuação · Assessoria · Auxiliamos
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="melhoria alto">
+  <span class="tag alto">Alta</span>
+  <div>
+    <h3>Meta descriptions e SEO básico em falta</h3>
+    <p>As páginas não têm meta description, o que faz com que o Google mostre texto aleatório nos resultados de pesquisa. Também falta schema markup para advogado/escritório de advocacia.</p>
+    <div class="codigo"><span class="cm"><!-- Adicionar no &lt;head&gt; de cada página --></span>
+<span class="ct">&lt;meta</span> <span class="cv">name</span>=<span class="cv">"description"</span> <span class="ct">content</span>=<span class="cv">"MA Advocacia — Especialistas em imigração em Portugal. NIF, NISS, reagrupamento familiar, autorização de residência. Lisboa. +351 960 389 573"</span><span class="ct">&gt;</span>
+
+<span class="cm"><!-- Schema markup --></span>
+<span class="ct">&lt;script</span> <span class="cv">type</span>=<span class="cv">"application/ld+json"</span><span class="ct">&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "MA Advocacia",
+  "telephone": "+351960389573",
+  "email": "marcio.andrio@ma-advocacia.com",
+  "url": "https://ma-advocacia.com",
+  "areaServed": "PT"
+}
+<span class="ct">&lt;/script&gt;</span></div>
+  </div>
+</div>
+
+<div class="melhoria alto">
+  <span class="tag alto">Alta</span>
+  <div>
+    <h3>Perfil da equipa incompleto — sem credenciais verificáveis</h3>
+    <p>Helen Parwani aparece como "Administradora" sem qualificações. Marcio Andrio tem foto genérica. Clientes de imigração precisam de confiar que estão a lidar com advogados qualificados.</p>
+    <div class="fix"><strong>Correção:</strong> Adicionar para cada membro: foto profissional real, número de inscrição na Ordem, línguas faladas, anos de experiência, e especialização específica. Ex: "Especialista em Reagrupamento Familiar e Direito de Estrangeiros".</div>
+  </div>
+</div>
+
+<div class="melhoria alto">
+  <span class="tag alto">Alta</span>
+  <div>
+    <h3>Descrições de serviços demasiado vagas</h3>
+    <p>Os serviços estão descritos com frases genéricas ("auxiliamos na obtenção de vistos...") sem informação prática: prazos, documentos necessários, custos aproximados, ou o que o cliente pode esperar.</p>
+    <div class="fix"><strong>Correção:</strong> Para cada serviço, adicionar: ① O que é ② Quem pode pedir ③ Documentos necessários ④ Prazo estimado ⑤ O que o escritório faz. Usar o modelo da proposta de reagrupamento familiar já criada.</div>
+  </div>
+</div>
+
+<div class="melhoria alto">
+  <span class="tag alto">Alta</span>
+  <div>
+    <h3>CTAs fracos e botão duplicado sem destaque</h3>
+    <p>"Ver Detalhe >>" é genérico. O botão "Realizar uma Consulta" aparece várias vezes sem hierarquia visual. O WhatsApp, que é o canal mais utilizado por clientes de imigração, não está visível na página principal.</p>
+    <div class="fix"><strong>Correção:</strong> Adicionar botão flutuante de WhatsApp (+351 960 389 573) visível em toda a página. Mudar CTAs para texto específico: "Saber mais sobre Reagrupamento Familiar →" em vez de "Ver Detalhe >>". Destacar visualmente o botão principal de contacto.</div>
+  </div>
+</div>
+
+<!-- ─── PRIORIDADE MÉDIA ─── -->
+<div class="secao-titulo">Prioridade Média</div>
+
+<div class="melhoria medio">
+  <span class="tag medio">Média</span>
+  <div>
+    <h3>Depoimentos sem contexto — apenas primeiro nome e sem data</h3>
+    <p>"FELIPE" e "Noemi" não transmitem credibilidade suficiente. Sem datas, o visitante não sabe se os depoimentos têm 1 mês ou 5 anos.</p>
+    <div class="fix"><strong>Correção:</strong> Adicionar: sobrenome ou inicial, país de origem, serviço utilizado e data (mês/ano). Ex: "Felipe R. · Brasil → Portugal · Reagrupamento Familiar · Março 2026". Google Reviews também pode ser integrado para mostrar avaliações verificadas.</div>
+  </div>
+</div>
+
+<div class="melhoria medio">
+  <span class="tag medio">Média</span>
+  <div>
+    <h3>Sem métricas de sucesso visíveis</h3>
+    <p>O site não apresenta nenhuma estatística que demonstre experiência: número de processos, taxa de aprovação, anos de atividade, países atendidos.</p>
+    <div class="fix"><strong>Correção:</strong> Adicionar secção de números na página inicial. Exemplos:
+      <ul class="checklist">
+        <li>+500 processos de imigração concluídos</li>
+        <li>Mais de 8 anos de experiência em direito de estrangeiros</li>
+        <li>Clientes de 20+ nacionalidades</li>
+        <li>95% taxa de aprovação em reagrupamentos familiares</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="melhoria medio">
+  <span class="tag medio">Média</span>
+  <div>
+    <h3>Links do rodapé genéricos e sem contexto</h3>
+    <p>"Link da ordem" e "tribunal de pesquisa" são labels confusas para visitantes que não sabem o que são.</p>
+    <div class="compare">
+      <div class="compare-box before">
+        <div class="label">❌ Atual</div>
+        "Link da ordem" · "tribunal de pesquisa"
+      </div>
+      <div class="compare-box after">
+        <div class="label">✓ Melhorado</div>
+        "Verificar advogado (Ordem PT)" · "Pesquisar processos (CITIUS)"
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="melhoria medio">
+  <span class="tag medio">Média</span>
+  <div>
+    <h3>Galeria de clientes sem contexto</h3>
+    <p>Existe uma secção de "galeria de clientes" mas sem explicação do que são (logos de empresas parceiras? comunidades atendidas?).</p>
+    <div class="fix"><strong>Correção:</strong> Substituir por logos de associações parceiras, consulados, ou comunidades de imigrantes com quem o escritório colabora — com legenda de cada um. Aumenta confiança e demonstra rede de contactos.</div>
+  </div>
+</div>
+
+<!-- ─── RESUMO DE AÇÕES ─── -->
+<div class="secao-titulo">Plano de Ação Recomendado</div>
+
+<div style="background:#fff;border:1px solid #e8dfc8;border-radius:2px;padding:24px 28px;margin-bottom:12px;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:13px;color:#b91c1c;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Semana 1 — Urgente</h3>
+  <ul class="checklist">
+    <li>Corrigir ou substituir o formulário de contacto (adicionar link WhatsApp imediato)</li>
+    <li>Remover link "Blog" do menu enquanto não tem conteúdo</li>
+    <li>Adicionar número de inscrição na Ordem dos Advogados</li>
+    <li>Criar página de Política de Privacidade e instalar banner de cookies RGPD</li>
+    <li>Remover ou corrigir os seletores de idioma PT/EN/ES</li>
+  </ul>
+</div>
+
+<div style="background:#fff;border:1px solid #e8dfc8;border-radius:2px;padding:24px 28px;margin-bottom:12px;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:13px;color:#92400e;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Mês 1 — Alta Prioridade</h3>
+  <ul class="checklist">
+    <li>Uniformizar o idioma para Português de Portugal em todo o site</li>
+    <li>Adicionar meta descriptions e schema markup em todas as páginas</li>
+    <li>Atualizar perfis da equipa com fotos profissionais e credenciais</li>
+    <li>Expandir descrições de serviços com detalhe prático (documentos, prazos)</li>
+    <li>Adicionar botão flutuante de WhatsApp</li>
+  </ul>
+</div>
+
+<div style="background:#fff;border:1px solid #e8dfc8;border-radius:2px;padding:24px 28px;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:13px;color:#4a1628;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Mês 2-3 — Melhorias Contínuas</h3>
+  <ul class="checklist">
+    <li>Publicar 3 a 5 artigos de blog sobre temas de imigração actuais (Lei 61/2025, reagrupamento, etc.)</li>
+    <li>Adicionar métricas de sucesso e contadores na página inicial</li>
+    <li>Melhorar depoimentos com contexto, datas e integração com Google Reviews</li>
+    <li>Corrigir labels de links no rodapé</li>
+    <li>Substituir galeria de clientes por logos de parceiros com contexto</li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer-rel">
+  Análise realizada para <span>MA Advocacia</span> · ma-advocacia.com · Junho 2026
+</div>
+
+</body>
+</html>

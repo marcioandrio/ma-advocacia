@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serviços — MA Advocacia</title>
+<meta name="description" content="Serviços de imigração em Portugal: NIF, NISS, Reagrupamento Familiar, Autorização de Residência, Recurso NAV. Tabela de honorários transparente.">
+<link rel="icon" href="../../img/icone/ma.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --preto: #1a0e00; --vinho: #4a1628; --ouro: #c9a85c;
+  --ouro-claro: #e9d9a8; --creme: #fdf6ee; --bg: #f5f3ef;
+  --borda: #e0d0b0; --muted: #6b5a3a; --muted2: #3a2a1a;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--preto); }
+a { text-decoration: none; color: inherit; }
+
+.barra-topo {
+  background: var(--vinho); padding: 7px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.barra-topo a { font-size: 12px; color: #e9d9de; margin-right: 20px; }
+.barra-topo a:hover { color: var(--ouro); }
+.barra-topo .direita { font-size: 11px; color: #c4a8ae; letter-spacing: .04em; }
+
+.header {
+  background: var(--preto); padding: 0 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 70px; border-bottom: 1px solid #2a1800;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; letter-spacing: .06em; }
+.logo span { color: var(--ouro); }
+.logo small { display: block; font-family: 'Inter', sans-serif; font-size: 9px; color: #6b5a3a; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; margin-top: -2px; }
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { font-size: 13px; color: #bdb08a; letter-spacing: .04em; padding: 4px 0; border-bottom: 1.5px solid transparent; }
+nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro); }
+.btn-cta { background: var(--ouro); color: var(--preto); font-size: 12px; font-weight: 600; padding: 10px 22px; border-radius: 1px; letter-spacing: .06em; white-space: nowrap; }
+.btn-cta:hover { background: var(--ouro-claro); }
+
+/* PAGE HERO */
+.page-hero {
+  background: var(--preto); padding: 52px 48px;
+  border-bottom: 1px solid #2a1800;
+}
+.page-hero-inner { max-width: 1100px; margin: 0 auto; }
+.breadcrumb { font-size: 12px; color: #4a3020; margin-bottom: 16px; }
+.breadcrumb a { color: #6b5a3a; }
+.breadcrumb span { color: #4a3020; margin: 0 6px; }
+.page-hero h1 {
+  font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800;
+  color: #fff; margin-bottom: 10px;
+}
+.page-hero p { font-family: 'Lora', serif; font-size: 15px; color: #bdb08a; max-width: 560px; line-height: 1.7; }
+
+/* LAYOUT */
+.layout { max-width: 1100px; margin: 0 auto; padding: 52px 48px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+
+/* FILTROS LATERAL */
+.sidebar { position: sticky; top: 90px; }
+.sidebar-box { background: #fff; border: 1px solid var(--borda); border-radius: 2px; padding: 20px; margin-bottom: 16px; }
+.sidebar-box h4 { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--preto); margin-bottom: 12px; letter-spacing: .06em; }
+.filtro-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 1px; cursor: pointer;
+  font-size: 13px; color: var(--muted); transition: background .15s, color .15s;
+  border-left: 2px solid transparent; margin-bottom: 2px;
+}
+.filtro-item:hover { background: var(--creme); color: var(--preto); }
+.filtro-item.ativo { background: var(--creme); color: var(--vinho); border-left-color: var(--vinho); font-weight: 600; }
+.filtro-item .filtro-icon { font-size: 15px; width: 20px; text-align: center; }
+
+.sidebar-cta {
+  background: var(--preto); border-radius: 2px; padding: 22px;
+}
+.sidebar-cta h4 { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--ouro); margin-bottom: 8px; }
+.sidebar-cta p { font-size: 12px; color: #6b5a3a; line-height: 1.6; margin-bottom: 14px; }
+.sidebar-cta .btn-sc { display: block; background: var(--ouro); color: var(--preto); font-size: 12px; font-weight: 600; padding: 10px; text-align: center; border-radius: 1px; margin-bottom: 8px; }
+.sidebar-cta .btn-wa-s { display: block; background: #25D366; color: #fff; font-size: 12px; font-weight: 600; padding: 10px; text-align: center; border-radius: 1px; }
+
+/* SERVIÇOS */
+.servicos-lista { display: flex; flex-direction: column; gap: 20px; }
+
+.card-servico-full {
+  background: #fff; border: 1px solid var(--borda);
+  border-left: 4px solid var(--vinho); border-radius: 2px;
+  overflow: hidden;
+}
+.card-servico-full .card-header {
+  padding: 20px 24px; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer;
+  border-bottom: 1px solid var(--borda);
+}
+.card-servico-full .card-header-left { display: flex; gap: 16px; align-items: flex-start; }
+.card-icone-grande {
+  width: 48px; height: 48px; background: var(--creme); border-radius: 2px;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+}
+.card-servico-full h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--preto); margin-bottom: 4px; }
+.card-servico-full .sub-h3 { font-size: 12px; color: var(--muted); }
+.preco-destaque {
+  text-align: right; flex-shrink: 0;
+}
+.preco-destaque .valor {
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--vinho); line-height: 1;
+}
+.preco-destaque .valor-label { font-size: 10px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: 3px; }
+
+.card-body { padding: 20px 24px; }
+.card-body p { font-size: 13.5px; color: var(--muted2); line-height: 1.7; margin-bottom: 14px; }
+
+.dois-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+.info-bloco h5 {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px; font-weight: 600;
+}
+.info-bloco ul { list-style: none; }
+.info-bloco ul li {
+  font-size: 12.5px; color: var(--muted2); line-height: 1.6;
+  padding: 3px 0; display: flex; align-items: flex-start; gap: 7px;
+}
+.info-bloco ul li::before { content: '→'; color: var(--ouro); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+.tags-serv { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag-s {
+  font-size: 10px; background: var(--creme); border: 1px solid var(--borda);
+  color: var(--muted); padding: 4px 10px; border-radius: 50px;
+}
+.tag-s.destaque { background: rgba(74,22,40,.08); border-color: rgba(74,22,40,.2); color: var(--vinho); font-weight: 600; }
+
+.card-footer {
+  padding: 14px 24px; background: var(--creme);
+  border-top: 1px solid var(--borda);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.card-footer .btn-pedir {
+  background: var(--vinho); color: #fff; font-size: 12px; font-weight: 600;
+  padding: 9px 20px; border-radius: 1px; letter-spacing: .04em;
+}
+.card-footer .btn-pedir:hover { background: var(--preto); }
+.card-footer .nota-foot { font-size: 11px; color: var(--muted); font-style: italic; }
+
+/* TABELA RESUMO */
+.tabela-resumo { background: #fff; border: 1px solid var(--borda); border-radius: 2px; overflow: hidden; margin-top: 32px; }
+.tabela-resumo h3 {
+  font-family: 'Playfair Display', serif; font-size: 15px; color: var(--preto);
+  padding: 16px 20px; border-bottom: 1.5px solid var(--ouro); background: var(--creme);
+}
+.tabela-resumo table { width: 100%; border-collapse: collapse; }
+.tabela-resumo th {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  padding: 10px 16px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--borda);
+}
+.tabela-resumo td { font-size: 12.5px; color: var(--muted2); padding: 10px 16px; border-bottom: 1px solid #f0e8d8; }
+.tabela-resumo tr:last-child td { border-bottom: none; }
+.tabela-resumo .td-preco { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--vinho); }
+.tabela-resumo .td-link { color: var(--ouro); font-size: 12px; font-weight: 600; }
+
+/* FOOTER */
+footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
+.footer-top { max-width: 1100px; margin: 0 auto; padding: 48px 48px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.footer-col h4 { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--ouro); margin-bottom: 14px; }
+.footer-col p, .footer-col a { display: block; font-size: 12px; color: #4a3020; margin-bottom: 6px; line-height: 1.7; }
+.footer-col a:hover { color: var(--ouro); }
+.footer-ordem { font-size: 10px; color: #3a2010; letter-spacing: .06em; margin-top: 14px; padding-top: 14px; border-top: 1px solid #2a1800; line-height: 1.6; }
+.footer-bottom { border-top: 1px solid #2a1800; padding: 14px 48px; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; color: #3a2010; }
+.footer-bottom a { font-size: 11px; color: #3a2010; margin-left: 16px; }
+.footer-bottom a:hover { color: var(--ouro); }
+
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; background: #25D366; color: #fff;
+  font-size: 13px; font-weight: 600; padding: 12px 20px; border-radius: 50px;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(37,211,102,.35); z-index: 999;
+}
+
+@media (max-width: 900px) {
+  .barra-topo, .page-hero, .footer-top, .footer-bottom { padding-left: 20px; padding-right: 20px; }
+  .header { padding: 0 20px; }
+  .layout { grid-template-columns: 1fr; padding: 32px 20px; }
+  .sidebar { position: relative; top: 0; }
+  .dois-col { grid-template-columns: 1fr; }
+  nav { display: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- BARRA TOPO -->
+<div class="barra-topo">
+  <div>
+    <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
+    <a href="tel:+351960389573">📞 +351 960 389 573</a>
+  </div>
+  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]</div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo">MA <span>Advocacia</span><small>Especialistas em Imigração</small></a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="#">Quem Somos</a>
+    <a href="#">A Nossa Equipa</a>
+    <a href="servicos.html" class="ativo">Serviços</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <a href="index.html#contacto" class="btn-cta">Avaliar o meu caso</a>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Início</a><span>›</span> Serviços</div>
+    <h1>Áreas de Atuação</h1>
+    <p>Apoio jurídico completo em todas as fases do processo de imigração para Portugal, com honorários transparentes e sem surpresas.</p>
+  </div>
+</div>
+
+<!-- LAYOUT PRINCIPAL -->
+<div style="background:var(--bg);">
+<div class="layout">
+
+  <!-- CONTEÚDO -->
+  <div>
+    <div class="servicos-lista">
+
+      <!-- NIF / NISS -->
+      <div class="card-servico-full">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-icone-grande">🛂</div>
+            <div>
+              <h3>NIF e NISS</h3>
+              <div class="sub-h3">Número de Identificação Fiscal · Número de Identificação da Segurança Social</div>
+            </div>
+          </div>
+          <div class="preco-destaque">
+            <div class="valor">€ 80</div>
+            <div class="valor-label">por documento</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>O NIF é obrigatório para qualquer cidadão estrangeiro que pretenda trabalhar, abrir conta bancária ou celebrar contratos em Portugal. O NISS é necessário para aceder à Segurança Social e ao SNS. Tratamos do processo completo junto das Finanças e da Segurança Social.</p>
+          <div class="dois-col">
+            <div class="info-bloco">
+              <h5>Documentos necessários — NIF</h5>
+              <ul>
+                <li>Passaporte válido</li>
+                <li>Comprovante de morada</li>
+                <li>Carimbo de entrada em Portugal</li>
+                <li>Visto (quando aplicável)</li>
+              </ul>
+            </div>
+            <div class="info-bloco">
+              <h5>Documentos necessários — NISS</h5>
+              <ul>
+                <li>Passaporte válido</li>
+                <li>NIF</li>
+                <li>Contrato de trabalho ou recibos de atividade</li>
+                <li>Atestado de morada</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tags-serv">
+            <span class="tag-s destaque">Finanças AT</span>
+            <span class="tag-s destaque">Segurança Social</span>
+            <span class="tag-s">Prazo: 1-5 dias úteis</span>
+            <span class="tag-s">Presencial ou online</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="index.html#contacto" class="btn-pedir">Solicitar este serviço</a>
+          <span class="nota-foot">Inclui NIF + senha de acesso às Finanças</span>
+        </div>
+      </div>
+
+      <!-- REAGRUPAMENTO FAMILIAR -->
+      <div class="card-servico-full">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-icone-grande">👨‍👩‍👧</div>
+            <div>
+              <h3>Reagrupamento Familiar</h3>
+              <div class="sub-h3">Art.º 98.º Lei de Estrangeiros · Lei n.º 61/2025</div>
+            </div>
+          </div>
+          <div class="preco-destaque">
+            <div class="valor">€ 1.000</div>
+            <div class="valor-label">processo completo</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>O Reagrupamento Familiar é o direito que assiste a quem já possui residência legal em Portugal a viver junto dos seus familiares mais próximos. Com a Lei n.º 61/2025, foram introduzidas novas regras. O processo inclui análise, preparação de toda a documentação, submissão na AIMA e acompanhamento até à decisão final.</p>
+          <div class="dois-col">
+            <div class="info-bloco">
+              <h5>Quem pode ser reagrupado</h5>
+              <ul>
+                <li>Cônjuge ou união de facto (ambos +18 anos)</li>
+                <li>Filhos menores do casal ou adotados</li>
+                <li>Filhos maiores solteiros a cargo</li>
+                <li>Pais com dependência económica comprovada</li>
+              </ul>
+            </div>
+            <div class="info-bloco">
+              <h5>Requisitos do residente</h5>
+              <ul>
+                <li>Residência mínima de 2 anos (15 meses para cônjuge)</li>
+                <li>Sem prazo mínimo para menores a cargo</li>
+                <li>Alojamento adequado comprovado</li>
+                <li>Meios de subsistência suficientes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tags-serv">
+            <span class="tag-s destaque">Lei 61/2025</span>
+            <span class="tag-s destaque">AIMA</span>
+            <span class="tag-s">Prazo legal: até 9 meses</span>
+            <span class="tag-s">Art.º 98.º n.º 1 e 2</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="index.html#contacto" class="btn-pedir">Solicitar avaliação gratuita</a>
+          <span class="nota-foot">Não inclui taxas AIMA, traduções ou apostila</span>
+        </div>
+      </div>
+
+      <!-- AUTORIZAÇÃO DE RESIDÊNCIA -->
+      <div class="card-servico-full">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-icone-grande">📋</div>
+            <div>
+              <h3>Autorização de Residência</h3>
+              <div class="sub-h3">Ação Judicial · Solicitação do Cartão de Residência</div>
+            </div>
+          </div>
+          <div class="preco-destaque">
+            <div class="valor">€ 1.000</div>
+            <div class="valor-label">processo completo</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Acompanhamento jurídico completo no pedido de Autorização de Residência junto da AIMA, incluindo a fase de instrução do processo, submissão e acompanhamento até à emissão do Cartão de Residência.</p>
+          <div class="info-bloco">
+            <h5>O que está incluído</h5>
+            <ul>
+              <li>Análise da elegibilidade e situação migratória</li>
+              <li>Orientação e recolha de toda a documentação necessária</li>
+              <li>Elaboração e submissão do pedido na AIMA</li>
+              <li>Acompanhamento até à decisão final e emissão do cartão</li>
+            </ul>
+          </div>
+          <div class="tags-serv">
+            <span class="tag-s destaque">AIMA</span>
+            <span class="tag-s">Manifestação de Interesse</span>
+            <span class="tag-s">D2, D3, D7, Golden Visa</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="index.html#contacto" class="btn-pedir">Solicitar este serviço</a>
+          <span class="nota-foot">Não inclui taxas AIMA ou traduções juramentadas</span>
+        </div>
+      </div>
+
+      <!-- NAV -->
+      <div class="card-servico-full">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-icone-grande">⚖️</div>
+            <div>
+              <h3>Recurso NAV</h3>
+              <div class="sub-h3">Notificação de Abandono Voluntário · Recurso Administrativo + Ação Judicial</div>
+            </div>
+          </div>
+          <div class="preco-destaque">
+            <div class="valor">€ 1.400</div>
+            <div class="valor-label">recurso + ação judicial</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>A NAV é emitida pela AIMA quando um pedido de residência é indeferido, determinando a saída do território português em 20 dias. Contestamos a NAV por via administrativa e, se necessário, judicial nos Tribunais Administrativos — suspendendo os seus efeitos e protegendo a sua permanência em Portugal.</p>
+          <div class="dois-col">
+            <div class="info-bloco">
+              <h5>Recurso Administrativo — € 700</h5>
+              <ul>
+                <li>Análise jurídica da NAV e do indeferimento</li>
+                <li>Arguição de ilegalidades e vícios de forma</li>
+                <li>Recurso hierárquico junto da AIMA</li>
+                <li>Suspensão dos efeitos durante a apreciação</li>
+              </ul>
+            </div>
+            <div class="info-bloco">
+              <h5>Ação Judicial — € 700</h5>
+              <ul>
+                <li>Após 60 dias úteis sem decisão da AIMA</li>
+                <li>Ação nos Tribunais Administrativos</li>
+                <li>Anulação da NAV e do indeferimento</li>
+                <li>Garantia de permanência legal durante o processo</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tags-serv">
+            <span class="tag-s destaque">Urgente — 20 dias para agir</span>
+            <span class="tag-s">Tribunais Administrativos</span>
+            <span class="tag-s">CPA art.º 189.º</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="index.html#contacto" class="btn-pedir">Contactar com urgência</a>
+          <span class="nota-foot">Prazo: 20 dias após receber a NAV. Não espere.</span>
+        </div>
+      </div>
+
+      <!-- PROCESSO PARADO -->
+      <div class="card-servico-full">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-icone-grande">🔄</div>
+            <div>
+              <h3>Processo Parado na AIMA</h3>
+              <div class="sub-h3">Silêncio Administrativo · Recurso Hierárquico por Demora Excessiva</div>
+            </div>
+          </div>
+          <div class="preco-destaque">
+            <div class="valor">€ 400</div>
+            <div class="valor-label">recurso hierárquico</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>O CPA estabelece que a AIMA tem o prazo máximo de 90 dias para se pronunciar. Ultrapassado esse prazo sem resposta, ocorre silêncio administrativo — situação que pode e deve ser contestada. O recurso hierárquico exige decisão expressa e frequentemente desbloqueia processos parados.</p>
+          <div class="info-bloco">
+            <h5>O que está incluído</h5>
+            <ul>
+              <li>Verificação do estado do processo e da data de entrada</li>
+              <li>Confirmação do incumprimento do prazo de 90 dias</li>
+              <li>Elaboração e apresentação do recurso hierárquico</li>
+              <li>Arguição do silêncio administrativo e exigência de decisão</li>
+            </ul>
+          </div>
+          <div class="tags-serv">
+            <span class="tag-s destaque">+90 dias sem resposta</span>
+            <span class="tag-s">CPA Decreto-Lei 4/2015</span>
+            <span class="tag-s">Art.º 189.º ss.</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="index.html#contacto" class="btn-pedir">Solicitar este serviço</a>
+          <span class="nota-foot">Inclui verificação de status + recurso hierárquico</span>
+        </div>
+      </div>
+
+    </div><!-- /servicos-lista -->
+
+    <!-- TABELA RESUMO -->
+    <div class="tabela-resumo">
+      <h3>Tabela de Honorários</h3>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40%">Serviço</th>
+            <th style="width:20%">Honorários</th>
+            <th>Observações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>NIF / Troca de Senha NIF / Morada Fiscal</td><td class="td-preco">€ 80</td><td>Por serviço</td></tr>
+          <tr><td>NISS / Senha de NISS</td><td class="td-preco">€ 300 / € 80</td><td>Por serviço</td></tr>
+          <tr><td>Abertura de Atividade</td><td class="td-preco">€ 80</td><td>Recibos verdes</td></tr>
+          <tr><td>Utente SNS</td><td class="td-preco">€ 80</td><td>Inscrição no SNS</td></tr>
+          <tr><td>Legal Entry</td><td class="td-preco">€ 30</td><td>Declaração de entrada legal</td></tr>
+          <tr><td>Declaração de Alojamento</td><td class="td-preco">€ 30</td><td>Para senhorios e inquilinos</td></tr>
+          <tr><td>Certificação de Passaporte</td><td class="td-preco">€ 15</td><td>Todas as folhas</td></tr>
+          <tr><td>Reconhecimento de Assinatura</td><td class="td-preco">€ 25</td><td>Simples</td></tr>
+          <tr><td>Tradução de Documentos</td><td class="td-preco">€ 15/folha</td><td>Por página traduzida</td></tr>
+          <tr><td>Declaração SIS</td><td class="td-preco">€ 50</td><td>Sistema de Informação Schengen</td></tr>
+          <tr><td>Contestação de Tempo AIMA</td><td class="td-preco">€ 200</td><td>Verificação de prazo</td></tr>
+          <tr><td>Recurso Administrativo Hierárquico</td><td class="td-preco">€ 400</td><td>Processo parado +90 dias</td></tr>
+          <tr><td>Autorização de Residência / Ação Judicial</td><td class="td-preco">€ 1.000</td><td>Processo completo</td></tr>
+          <tr><td>Reagrupamento Familiar</td><td class="td-preco">€ 1.000</td><td>Análise + submissão + acompanhamento</td></tr>
+          <tr><td>Recurso NAV (Admin. + Judicial)</td><td class="td-preco">€ 1.400</td><td>Após 60 dias úteis do recurso</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:14px 20px;background:var(--creme);border-top:1px solid var(--borda);font-size:11px;color:var(--muted);font-style:italic;line-height:1.6;">
+        * Valores referentes a honorários de advocacia. Não incluem taxas públicas (AIMA, Finanças, Segurança Social), apostila, traduções juramentadas ou deslocações. Preços sujeitos a atualização.
+      </div>
+    </div>
+
+  </div><!-- /conteúdo -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-box">
+      <h4>Navegar por serviço</h4>
+      <div class="filtro-item ativo"><span class="filtro-icon">🛂</span> NIF e NISS</div>
+      <div class="filtro-item"><span class="filtro-icon">👨‍👩‍👧</span> Reagrupamento Familiar</div>
+      <div class="filtro-item"><span class="filtro-icon">📋</span> Autorização de Residência</div>
+      <div class="filtro-item"><span class="filtro-icon">⚖️</span> Recurso NAV</div>
+      <div class="filtro-item"><span class="filtro-icon">🔄</span> Processo parado</div>
+      <div class="filtro-item"><span class="filtro-icon">📄</span> Outros documentos</div>
+    </div>
+    <div class="sidebar-cta">
+      <h4>Avaliação gratuita</h4>
+      <p>Não tem a certeza de que serviço precisa? Contacte-nos e analisamos a sua situação sem compromisso.</p>
+      <a href="index.html#contacto" class="btn-sc">Enviar pedido de avaliação</a>
+      <a href="https://wa.me/351960389573" class="btn-wa-s">💬 Falar no WhatsApp</a>
+    </div>
+  </div>
+
+</div><!-- /layout -->
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>MA Advocacia</h4>
+      <p>Especialistas em direito de imigração, com sede em Lisboa. Apoio a cidadãos estrangeiros em todas as fases do processo de regularização em Portugal.</p>
+      <div class="footer-ordem">Marcio Andrio · Inscrito na OA n.º [XXXX] · OAB/AM [XXXX]</div>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <a href="#">NIF e NISS</a>
+      <a href="#">Reagrupamento Familiar</a>
+      <a href="#">Autorização de Residência</a>
+      <a href="#">Recurso NAV</a>
+      <a href="#">Processo parado na AIMA</a>
+    </div>
+    <div class="footer-col">
+      <h4>Links Úteis</h4>
+      <a href="#">Verificar advogado (Ordem PT)</a>
+      <a href="#">Pesquisar processos (CITIUS)</a>
+      <a href="#">Portal AIMA</a>
+      <a href="#">Portal de Vistos MNE</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:+351960389573">📞 +351 960 389 573</a>
+      <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
+      <a href="https://wa.me/351960389573">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid #2a1800;"></div>
+  <div class="footer-bottom">
+    <p>© 2026 MA Advocacia. Todos os direitos reservados.</p>
+    <div><a href="#">Política de Privacidade</a><a href="#">Cookies</a><a href="#">Aviso Legal</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/351960389573" class="wa-float" target="_blank">💬 Falar no WhatsApp</a>
+
+</body>
+</html>

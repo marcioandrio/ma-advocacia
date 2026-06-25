@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA Advocacia — Especialistas em Imigração em Portugal</title>
+<meta name="description" content="MA Advocacia — Especialistas em imigração em Portugal. NIF, NISS, Reagrupamento Familiar, Autorização de Residência, Recursos AIMA. Lisboa. +351 960 389 573">
+<link rel="icon" href="../../img/icone/ma.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --preto: #1a0e00;
+  --vinho: #4a1628;
+  --ouro: #c9a85c;
+  --ouro-claro: #e9d9a8;
+  --creme: #fdf6ee;
+  --bg: #f5f3ef;
+  --borda: #e0d0b0;
+  --texto: #1a0e00;
+  --muted: #6b5a3a;
+  --muted2: #3a2a1a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--texto);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ── BARRA TOPO ── */
+.barra-topo {
+  background: var(--vinho);
+  padding: 7px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.barra-topo .contactos {
+  display: flex;
+  gap: 24px;
+}
+.barra-topo .contactos a {
+  font-size: 12px;
+  color: #e9d9de;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.barra-topo .contactos a:hover { color: var(--ouro); }
+.barra-topo .direita {
+  font-size: 11px;
+  color: #c4a8ae;
+  letter-spacing: .04em;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--preto);
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  border-bottom: 1px solid #2a1800;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: .06em;
+}
+.logo span { color: var(--ouro); }
+.logo small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  color: #6b5a3a;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-top: -2px;
+}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a {
+  font-size: 13px;
+  color: #bdb08a;
+  letter-spacing: .04em;
+  padding: 4px 0;
+  border-bottom: 1.5px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro); }
+.btn-cta {
+  background: var(--ouro);
+  color: var(--preto);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 1px;
+  letter-spacing: .06em;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.btn-cta:hover { background: var(--ouro-claro); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--preto);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,22,40,.4) 0%, transparent 60%);
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--ouro);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--ouro);
+}
+.hero-sub {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  color: #bdb08a;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--ouro);
+  color: var(--preto);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 1px;
+  letter-spacing: .06em;
+  transition: background .2s;
+}
+.btn-primary:hover { background: var(--ouro-claro); }
+.btn-wa {
+  background: #25D366;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-outline {
+  border: 1px solid #3a2a1a;
+  color: #bdb08a;
+  font-size: 13px;
+  padding: 14px 24px;
+  border-radius: 1px;
+  transition: border-color .2s, color .2s;
+}
+.btn-outline:hover { border-color: var(--ouro); color: var(--ouro); }
+
+/* HERO STATS */
+.hero-stats {
+  background: rgba(255,255,255,.04);
+  border: 1px solid #2a1800;
+  border-radius: 2px;
+  padding: 32px;
+}
+.hero-stats .stat {
+  padding: 16px 0;
+  border-bottom: 1px solid #2a1800;
+}
+.hero-stats .stat:last-child { border-bottom: none; padding-bottom: 0; }
+.hero-stats .stat:first-child { padding-top: 0; }
+.hero-stats .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--ouro);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stats .lbl {
+  font-size: 12px;
+  color: #6b5a3a;
+  letter-spacing: .06em;
+  line-height: 1.4;
+}
+.hero-idiomas {
+  display: flex;
+  gap: 6px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.hero-idiomas .tag-idioma {
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: rgba(255,255,255,.06);
+  color: #bdb08a;
+  border: 1px solid #2a1800;
+}
+.hero-idiomas .tag-idioma.ativo {
+  background: rgba(201,168,92,.12);
+  color: var(--ouro);
+  border-color: rgba(201,168,92,.3);
+}
+
+/* ── SECÇÃO GENÉRICA ── */
+.secao { padding: 72px 48px; }
+.secao-inner { max-width: 1100px; margin: 0 auto; }
+.secao-alt { background: #fff; }
+.secao-dark { background: var(--preto); }
+
+.secao-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.secao-topo-centro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--ouro);
+}
+.secao-topo-centro .eyebrow { justify-content: center; }
+.secao-topo-centro .eyebrow::before { display: none; }
+h2.titulo-secao {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--preto);
+  line-height: 1.25;
+}
+h2.titulo-secao.claro { color: #fff; }
+.sub-secao {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-top: 8px;
+}
+.sub-secao.centro { margin: 8px auto 0; text-align: center; }
+.ver-todos {
+  font-size: 13px;
+  color: var(--ouro);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ver-todos:hover { color: var(--muted); }
+
+/* ── SERVIÇOS ── */
+.grid-servicos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card-servico {
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-top: 3px solid var(--vinho);
+  border-radius: 2px;
+  padding: 28px 24px;
+  transition: box-shadow .2s, transform .2s;
+}
+.card-servico:hover {
+  box-shadow: 0 8px 32px rgba(26,14,0,.08);
+  transform: translateY(-2px);
+}
+.card-servico .icone {
+  width: 44px;
+  height: 44px;
+  background: var(--creme);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.card-servico h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--preto);
+  margin-bottom: 8px;
+}
+.card-servico p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.card-servico .tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.tag {
+  font-size: 10px;
+  background: var(--creme);
+  border: 1px solid var(--borda);
+  color: var(--muted);
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+.card-servico .link-servico {
+  font-size: 12px;
+  color: var(--vinho);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap .15s;
+}
+.card-servico:hover .link-servico { gap: 8px; }
+
+/* ── NÚMEROS ── */
+.grid-numeros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #2a1800;
+  border: 1px solid #2a1800;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.numero-box {
+  background: var(--preto);
+  padding: 32px 28px;
+  text-align: center;
+}
+.numero-box .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--ouro);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.numero-box .lbl {
+  font-size: 12px;
+  color: #6b5a3a;
+  letter-spacing: .06em;
+  line-height: 1.5;
+}
+
+/* ── EQUIPA ── */
+.grid-equipa {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.card-pessoa {
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 2px;
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+}
+.card-pessoa .foto {
+  width: 140px;
+  flex-shrink: 0;
+  background: var(--creme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--borda);
+}
+.card-pessoa .foto .iniciais {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--vinho);
+  font-weight: 700;
+}
+.card-pessoa .info { padding: 24px 20px; }
+.card-pessoa h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--preto);
+  margin-bottom: 2px;
+}
+.card-pessoa .cargo {
+  font-size: 11px;
+  color: var(--ouro);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.card-pessoa .ordem {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background: var(--creme);
+  border-radius: 2px;
+  display: inline-block;
+}
+.card-pessoa p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.card-pessoa .linguas {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.lingua-tag {
+  font-size: 10px;
+  background: var(--creme);
+  border: 1px solid var(--borda);
+  color: var(--muted);
+  padding: 3px 9px;
+  border-radius: 50px;
+}
+
+/* ── DEPOIMENTOS ── */
+.grid-depo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card-depo {
+  background: rgba(255,255,255,.05);
+  border: 1px solid #2a1800;
+  border-radius: 2px;
+  padding: 24px;
+}
+.estrelas { color: var(--ouro); font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+.card-depo blockquote {
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  color: #bdb08a;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.card-depo .autor { display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--vinho);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: var(--ouro);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.autor-nome { font-size: 13px; font-weight: 600; color: #fff; }
+.autor-det { font-size: 11px; color: #6b5a3a; margin-top: 1px; }
+.card-depo .google-tag {
+  font-size: 10px;
+  color: #3a2a1a;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #2a1800;
+}
+
+/* ── PROCESSO ── */
+.grid-processo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.grid-processo::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: var(--borda);
+  z-index: 0;
+}
+.passo {
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+.passo .num-passo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--creme);
+  border: 2px solid var(--ouro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--vinho);
+  margin: 0 auto 16px;
+}
+.passo h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--preto);
+  margin-bottom: 6px;
+}
+.passo p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ── CONTACTO ── */
+.secao-contacto {
+  background: var(--preto);
+  padding: 72px 48px;
+}
+.contacto-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.contacto-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.contacto-info p {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  color: #bdb08a;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.contacto-items { display: flex; flex-direction: column; gap: 14px; }
+.contacto-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.contacto-item .icon-ci {
+  width: 40px;
+  height: 40px;
+  background: rgba(74,22,40,.5);
+  border: 1px solid var(--vinho);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.contacto-item .texto .lbl { font-size: 10px; color: #6b5a3a; letter-spacing: .1em; text-transform: uppercase; }
+.contacto-item .texto .val { font-size: 14px; color: #fff; margin-top: 2px; }
+
+/* FORM */
+.form-contacto {
+  background: rgba(255,255,255,.04);
+  border: 1px solid #2a1800;
+  border-radius: 2px;
+  padding: 32px;
+}
+.form-contacto h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.form-grupo { margin-bottom: 14px; }
+.form-grupo label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+  width: 100%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid #2a1800;
+  border-radius: 1px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color .2s;
+}
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus { border-color: var(--ouro); }
+.form-grupo select { color: #bdb08a; }
+.form-grupo select option { background: #1a0e00; }
+.form-grupo textarea { resize: vertical; min-height: 90px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-nota {
+  font-size: 10px;
+  color: #3a2a1a;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+.form-nota a { color: #6b5a3a; text-decoration: underline; }
+.btn-form {
+  width: 100%;
+  background: var(--ouro);
+  color: var(--preto);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  letter-spacing: .06em;
+  margin-top: 6px;
+  transition: background .2s;
+}
+.btn-form:hover { background: var(--ouro-claro); }
+
+/* ── FOOTER ── */
+footer {
+  background: #110800;
+  border-top: 1px solid #2a1800;
+}
+.footer-top {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 48px 40px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-col h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: var(--ouro);
+  margin-bottom: 14px;
+  letter-spacing: .06em;
+}
+.footer-col p {
+  font-size: 12px;
+  color: #4a3020;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.footer-col a {
+  display: block;
+  font-size: 12px;
+  color: #4a3020;
+  margin-bottom: 6px;
+  transition: color .2s;
+}
+.footer-col a:hover { color: var(--ouro); }
+.footer-ordem {
+  font-size: 10px;
+  color: #3a2010;
+  letter-spacing: .06em;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #2a1800;
+  line-height: 1.6;
+}
+.footer-bottom {
+  border-top: 1px solid #2a1800;
+  padding: 14px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p { font-size: 11px; color: #3a2010; }
+.footer-bottom .rgpd-links { display: flex; gap: 16px; }
+.footer-bottom .rgpd-links a { font-size: 11px; color: #3a2010; transition: color .2s; }
+.footer-bottom .rgpd-links a:hover { color: var(--ouro); }
+
+/* ── WhatsApp FLOAT ── */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #25D366;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(37,211,102,.35);
+  z-index: 999;
+  transition: transform .2s, box-shadow .2s;
+}
+.wa-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,.45);
+}
+
+/* ── BANNER AVISO ── */
+.banner-cookies {
+  background: #1a0e00;
+  border-top: 2px solid #2a1800;
+  padding: 14px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.banner-cookies p { font-size: 12px; color: #6b5a3a; line-height: 1.6; }
+.banner-cookies p a { color: var(--ouro); text-decoration: underline; }
+.banner-cookies .btns-cookie { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-cookie-ok {
+  background: var(--ouro);
+  color: var(--preto);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 1px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-cookie-cfg {
+  border: 1px solid #3a2a1a;
+  color: #6b5a3a;
+  font-size: 11px;
+  padding: 7px 14px;
+  border-radius: 1px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .barra-topo, .header, .secao, .secao-contacto { padding-left: 20px; padding-right: 20px; }
+  .hero { padding: 48px 20px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-stats { display: none; }
+  .hero h1 { font-size: 30px; }
+  .grid-servicos { grid-template-columns: 1fr; }
+  .grid-numeros { grid-template-columns: 1fr 1fr; }
+  .grid-equipa { grid-template-columns: 1fr; }
+  .grid-depo { grid-template-columns: 1fr; }
+  .grid-processo { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-processo::before { display: none; }
+  .contacto-inner { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; padding: 40px 20px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 14px 20px; }
+  nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- COOKIES -->
+<div class="banner-cookies" id="cookieBanner">
+  <p>Utilizamos cookies para melhorar a sua experiência e cumprir o RGPD. Ao continuar, aceita a nossa <a href="#">Política de Privacidade</a>.</p>
+  <div class="btns-cookie">
+    <div class="btn-cookie-cfg" onclick="document.getElementById('cookieBanner').style.display='none'">Configurar</div>
+    <div class="btn-cookie-ok" onclick="document.getElementById('cookieBanner').style.display='none'">Aceitar todos</div>
+  </div>
+</div>
+
+<!-- BARRA TOPO -->
+<div class="barra-topo">
+  <div class="contactos">
+    <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
+    <a href="tel:+351960389573">📞 +351 960 389 573</a>
+    <a href="tel:+5592988888888">📞 +55 (92) 9 8888-8888</a>
+  </div>
+  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]</div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo">
+    MA <span>Advocacia</span>
+    <small>Especialistas em Imigração</small>
+  </a>
+  <nav>
+    <a href="#" class="ativo">Início</a>
+    <a href="#">Quem Somos</a>
+    <a href="#">A Nossa Equipa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <a href="#contacto" class="btn-cta">Avaliar o meu caso</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Escritório de Advocacia · Lisboa, Portugal</div>
+      <h1>Especialistas em<br><em>Imigração</em><br>para Portugal</h1>
+      <p class="hero-sub">NIF, NISS, Reagrupamento Familiar, Autorização de Residência e Recursos AIMA. Atendimento personalizado em Português, Inglês e Espanhol.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-primary">Avaliar o meu caso gratuitamente</a>
+        <a href="https://wa.me/351960389573" class="btn-wa">💬 WhatsApp</a>
+        <a href="#servicos" class="btn-outline">Ver serviços</a>
+      </div>
+      <div class="hero-idiomas">
+        <span class="tag-idioma ativo">🇵🇹 Português</span>
+        <span class="tag-idioma">🇬🇧 English</span>
+        <span class="tag-idioma">🇪🇸 Español</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="num">+500</div>
+        <div class="lbl">Processos de imigração<br>concluídos com sucesso</div>
+      </div>
+      <div class="stat">
+        <div class="num">8+</div>
+        <div class="lbl">Anos de experiência<br>em direito de estrangeiros</div>
+      </div>
+      <div class="stat">
+        <div class="num">20+</div>
+        <div class="lbl">Nacionalidades<br>atendidas</div>
+      </div>
+      <div class="stat">
+        <div class="num">95%</div>
+        <div class="lbl">Taxa de aprovação<br>em reagrupamentos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<div class="grid-numeros">
+  <div class="numero-box">
+    <div class="num">+500</div>
+    <div class="lbl">Processos<br>concluídos</div>
+  </div>
+  <div class="numero-box">
+    <div class="num">8+</div>
+    <div class="lbl">Anos de<br>experiência</div>
+  </div>
+  <div class="numero-box">
+    <div class="num">20+</div>
+    <div class="lbl">Nacionalidades<br>atendidas</div>
+  </div>
+  <div class="numero-box">
+    <div class="num">95%</div>
+    <div class="lbl">Taxa de aprovação<br>nos processos</div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section class="secao" id="servicos">
+  <div class="secao-inner">
+    <div class="secao-topo">
+      <div>
+        <div class="eyebrow">O que fazemos</div>
+        <h2 class="titulo-secao">Áreas de Atuação</h2>
+        <p class="sub-secao">Apoio jurídico completo em todas as fases do processo de imigração para Portugal.</p>
+      </div>
+      <a href="servicos.html" class="ver-todos">Ver todos os serviços →</a>
+    </div>
+    <div class="grid-servicos">
+      <div class="card-servico">
+        <div class="icone">🛂</div>
+        <h3>NIF e NISS</h3>
+        <p>Obtenção do Número de Identificação Fiscal e Número de Identificação da Segurança Social para cidadãos estrangeiros.</p>
+        <div class="tags"><span class="tag">Finanças</span><span class="tag">Segurança Social</span><span class="tag">€ 80</span></div>
+        <a href="servicos.html" class="link-servico">Saber mais sobre NIF e NISS →</a>
+      </div>
+      <div class="card-servico">
+        <div class="icone">👨‍👩‍👧</div>
+        <h3>Reagrupamento Familiar</h3>
+        <p>Processo completo junto da AIMA para reunir a sua família em Portugal: cônjuge, filhos e pais. Prazo legal até 9 meses.</p>
+        <div class="tags"><span class="tag">Cônjuge</span><span class="tag">Filhos</span><span class="tag">Lei 61/2025</span><span class="tag">€ 1.000</span></div>
+        <a href="servicos.html" class="link-servico">Saber mais sobre Reagrupamento →</a>
+      </div>
+      <div class="card-servico">
+        <div class="icone">📋</div>
+        <h3>Autorização de Residência</h3>
+        <p>Acompanhamento no pedido de Autorização de Residência junto da AIMA, da submissão à decisão final.</p>
+        <div class="tags"><span class="tag">AIMA</span><span class="tag">Residência</span><span class="tag">€ 1.000</span></div>
+        <a href="servicos.html" class="link-servico">Saber mais →</a>
+      </div>
+      <div class="card-servico">
+        <div class="icone">⚖️</div>
+        <h3>Recurso NAV</h3>
+        <p>Contestação de Notificação de Abandono Voluntário por via administrativa e judicial nos Tribunais Administrativos.</p>
+        <div class="tags"><span class="tag">Recurso Admin.</span><span class="tag">Ação Judicial</span><span class="tag">€ 1.400</span></div>
+        <a href="servicos.html" class="link-servico">Saber mais sobre NAV →</a>
+      </div>
+      <div class="card-servico">
+        <div class="icone">🏥</div>
+        <h3>Utente SNS e Documentos</h3>
+        <p>Inscrição no Serviço Nacional de Saúde, declarações de alojamento, certificação de passaporte e reconhecimento de assinatura.</p>
+        <div class="tags"><span class="tag">SNS</span><span class="tag">Documentos</span><span class="tag">A partir de € 15</span></div>
+        <a href="servicos.html" class="link-servico">Ver todos os documentos →</a>
+      </div>
+      <div class="card-servico">
+        <div class="icone">🔄</div>
+        <h3>Processo Parado na AIMA</h3>
+        <p>Contestação de silêncio administrativo quando o processo ultrapassa o prazo legal de 90 dias sem resposta da AIMA.</p>
+        <div class="tags"><span class="tag">+90 dias</span><span class="tag">Recurso Hierárquico</span><span class="tag">€ 400</span></div>
+        <a href="servicos.html" class="link-servico">Saber mais →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="secao secao-alt">
+  <div class="secao-inner">
+    <div class="secao-topo-centro">
+      <div class="eyebrow">Processo simples</div>
+      <h2 class="titulo-secao">Como Trabalhamos</h2>
+      <p class="sub-secao centro">Um processo claro e transparente, do primeiro contacto à decisão final.</p>
+    </div>
+    <div class="grid-processo">
+      <div class="passo">
+        <div class="num-passo">1</div>
+        <h4>Avaliação do caso</h4>
+        <p>Análise gratuita da sua situação migratória e identificação do processo mais adequado.</p>
+      </div>
+      <div class="passo">
+        <div class="num-passo">2</div>
+        <h4>Recolha de documentos</h4>
+        <p>Lista detalhada de todos os documentos necessários e orientação sobre obtenção.</p>
+      </div>
+      <div class="passo">
+        <div class="num-passo">3</div>
+        <h4>Submissão do pedido</h4>
+        <p>Preparação, tradução e submissão do processo junto das entidades competentes.</p>
+      </div>
+      <div class="passo">
+        <div class="num-passo">4</div>
+        <h4>Acompanhamento</h4>
+        <p>Monitorização ativa e comunicação regular até à decisão final.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPA -->
+<section class="secao">
+  <div class="secao-inner">
+    <div class="secao-topo">
+      <div>
+        <div class="eyebrow">Conheça-nos</div>
+        <h2 class="titulo-secao">A Nossa Equipa</h2>
+      </div>
+    </div>
+    <div class="grid-equipa">
+      <div class="card-pessoa">
+        <div class="foto"><div class="iniciais">MA</div></div>
+        <div class="info">
+          <h3>Marcio Andrio</h3>
+          <div class="cargo">Sócio Fundador · Advogado</div>
+          <div class="ordem">Inscrito na OA n.º [XXXX] · OAB/AM [XXXX]</div>
+          <p>Especialista em direito de estrangeiros e imigração em Portugal. Mais de 8 anos de experiência em processos junto da AIMA, SEF e Tribunais Administrativos.</p>
+          <div class="linguas">
+            <span class="lingua-tag">🇵🇹 Português</span>
+            <span class="lingua-tag">🇬🇧 Inglês</span>
+            <span class="lingua-tag">🇪🇸 Espanhol</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-pessoa">
+        <div class="foto"><div class="iniciais">HP</div></div>
+        <div class="info">
+          <h3>Helen Parwani</h3>
+          <div class="cargo">Gestora de Processos</div>
+          <p>Responsável pela coordenação e acompanhamento dos processos de clientes, garantindo comunicação regular e organização documental eficiente.</p>
+          <div class="linguas">
+            <span class="lingua-tag">🇵🇹 Português</span>
+            <span class="lingua-tag">🇬🇧 Inglês</span>
+            <span class="lingua-tag">🇮🇳 Hindi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="secao secao-dark">
+  <div class="secao-inner">
+    <div class="secao-topo-centro">
+      <div class="eyebrow" style="color:var(--ouro);justify-content:center;">O que dizem os clientes</div>
+      <h2 class="titulo-secao claro">Depoimentos</h2>
+    </div>
+    <div class="grid-depo">
+      <div class="card-depo">
+        <div class="estrelas">★★★★★</div>
+        <blockquote>"O Dr. Marcio tratou do meu reagrupamento familiar com enorme profissionalismo. Em 7 meses consegui trazer a minha esposa e filhos para Portugal. Recomendo a toda a gente."</blockquote>
+        <div class="autor">
+          <div class="avatar">FR</div>
+          <div>
+            <div class="autor-nome">Felipe R.</div>
+            <div class="autor-det">Brasil → Portugal · Reagrupamento Familiar · Abril 2026</div>
+          </div>
+        </div>
+        <div class="google-tag">✓ Avaliação verificada no Google</div>
+      </div>
+      <div class="card-depo">
+        <div class="estrelas">★★★★★</div>
+        <blockquote>"Conseguiram o meu NIF e NISS em poucos dias. O atendimento foi sempre muito atencioso e explicaram tudo claramente. Processo sem complicações."</blockquote>
+        <div class="autor">
+          <div class="avatar">NS</div>
+          <div>
+            <div class="autor-nome">Noemi S.</div>
+            <div class="autor-det">Venezuela → Portugal · NIF e NISS · Março 2026</div>
+          </div>
+        </div>
+        <div class="google-tag">✓ Avaliação verificada no Google</div>
+      </div>
+      <div class="card-depo">
+        <div class="estrelas">★★★★★</div>
+        <blockquote>"Recebi uma NAV e fiquei desesperado. O escritório tomou conta de tudo, apresentou o recurso e conseguiu suspender a notificação. Ainda estou em Portugal."</blockquote>
+        <div class="autor">
+          <div class="avatar">CM</div>
+          <div>
+            <div class="autor-nome">Carlos M.</div>
+            <div class="autor-det">Colômbia → Portugal · Recurso NAV · Fevereiro 2026</div>
+          </div>
+        </div>
+        <div class="google-tag">✓ Avaliação verificada no Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="secao-contacto" id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-info">
+      <div class="eyebrow" style="color:var(--ouro);">Fale connosco</div>
+      <h2>Avalie o seu caso</h2>
+      <p>Preencha o formulário e entraremos em contacto em menos de 24 horas. A avaliação inicial é gratuita e sem compromisso.</p>
+      <div class="contacto-items">
+        <div class="contacto-item">
+          <div class="icon-ci">📞</div>
+          <div class="texto">
+            <div class="lbl">Telefone / WhatsApp</div>
+            <div class="val">+351 960 389 573</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="icon-ci">✉</div>
+          <div class="texto">
+            <div class="lbl">E-mail</div>
+            <div class="val">marcio.andrio@ma-advocacia.com</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="icon-ci">📍</div>
+          <div class="texto">
+            <div class="lbl">Localização</div>
+            <div class="val">Lisboa, Portugal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-contacto">
+      <h3>Avaliação de Caso</h3>
+      <div class="form-grid">
+        <div class="form-grupo">
+          <label>Nome completo</label>
+          <input type="text" placeholder="O seu nome">
+        </div>
+        <div class="form-grupo">
+          <label>Telefone / WhatsApp</label>
+          <input type="tel" placeholder="+351 000 000 000">
+        </div>
+      </div>
+      <div class="form-grupo">
+        <label>E-mail</label>
+        <input type="email" placeholder="email@exemplo.com">
+      </div>
+      <div class="form-grupo">
+        <label>Serviço pretendido</label>
+        <select>
+          <option value="">Seleccione o serviço...</option>
+          <option>NIF / NISS</option>
+          <option>Reagrupamento Familiar</option>
+          <option>Autorização de Residência</option>
+          <option>Recurso NAV</option>
+          <option>Processo parado na AIMA</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-grupo">
+        <label>Descreva brevemente a sua situação</label>
+        <textarea placeholder="Indique a sua nacionalidade, há quanto tempo está em Portugal e qual a sua situação actual..."></textarea>
+      </div>
+      <button class="btn-form">Enviar pedido de avaliação</button>
+      <p class="form-nota">Ao enviar este formulário, aceita a nossa <a href="#">Política de Privacidade</a>. Os seus dados são tratados de acordo com o RGPD e utilizados exclusivamente para responder ao seu pedido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>MA Advocacia</h4>
+      <p>Escritório especializado em direito de imigração, com sede em Lisboa. Apoio a cidadãos estrangeiros em todas as fases do processo de regularização em Portugal.</p>
+      <div class="footer-ordem">
+        Marcio Andrio · Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]<br>
+        OAB/AM n.º [XXXX]
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <a href="#">NIF e NISS</a>
+      <a href="#">Reagrupamento Familiar</a>
+      <a href="#">Autorização de Residência</a>
+      <a href="#">Recurso NAV</a>
+      <a href="#">Processo parado na AIMA</a>
+      <a href="#">Tabela de Honorários</a>
+    </div>
+    <div class="footer-col">
+      <h4>Links Úteis</h4>
+      <a href="https://verificar.oa.pt" target="_blank">Verificar advogado (Ordem PT)</a>
+      <a href="https://citius.tribunaisnet.mj.pt" target="_blank">Pesquisar processos (CITIUS)</a>
+      <a href="https://aima.gov.pt" target="_blank">Portal AIMA</a>
+      <a href="https://vistos.mne.gov.pt" target="_blank">Portal de Vistos MNE</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:+351960389573">📞 +351 960 389 573</a>
+      <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
+      <a href="https://wa.me/351960389573" target="_blank">💬 WhatsApp</a>
+      <a href="#">📍 Lisboa, Portugal</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid #2a1800;"></div>
+  <div class="footer-bottom">
+    <p>© 2026 MA Advocacia. Todos os direitos reservados.</p>
+    <div class="rgpd-links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Política de Cookies</a>
+      <a href="#">Aviso Legal</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/351960389573" class="wa-float" target="_blank">
+  💬 Falar no WhatsApp
+</a>
+
+</body>
+</html>

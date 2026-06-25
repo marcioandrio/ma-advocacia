@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design — ma-advocacia.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f5f3ef;
+    font-family: 'Lora', serif;
+    color: #1a0e00;
+    padding: 0 0 80px;
+  }
+
+  .topo {
+    background: #1a0e00;
+    color: #fff;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #c9a85c;
+  }
+  .topo h1 { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: .1em; color: #c9a85c; }
+  .topo p { font-size: 12px; color: #bdb08a; margin-top: 4px; letter-spacing: .06em; }
+  .badge-site {
+    background: #4a1628; border: 1px solid #c9a85c; color: #c9a85c;
+    padding: 8px 18px; border-radius: 2px; font-size: 12px; letter-spacing: .1em;
+    text-transform: uppercase; text-decoration: none;
+  }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+  .secao-titulo {
+    font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700;
+    letter-spacing: .18em; color: #8a6630; text-transform: uppercase;
+    border-bottom: 1.5px solid #c9a85c; padding-bottom: 4px; margin: 48px 0 24px;
+  }
+
+  /* ── PALETA ── */
+  .paleta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; margin-bottom: 20px; border-radius: 4px; overflow: hidden; border: 1px solid #ddd5c5; }
+  .cor-box { height: 80px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; }
+  .cor-box .cor-nome { font-size: 9px; font-weight: 600; letter-spacing: .08em; }
+  .cor-box .cor-hex { font-family: monospace; font-size: 10px; margin-top: 2px; }
+
+  .paleta-atual .cor-box:nth-child(1) { background: #0a0a0a; }
+  .paleta-atual .cor-box:nth-child(1) .cor-nome, .paleta-atual .cor-box:nth-child(1) .cor-hex { color: #888; }
+  .paleta-atual .cor-box:nth-child(2) { background: #1a1a1a; }
+  .paleta-atual .cor-box:nth-child(2) .cor-nome, .paleta-atual .cor-box:nth-child(2) .cor-hex { color: #888; }
+  .paleta-atual .cor-box:nth-child(3) { background: #c9a85c; }
+  .paleta-atual .cor-box:nth-child(3) .cor-nome, .paleta-atual .cor-box:nth-child(3) .cor-hex { color: #5a3a00; }
+  .paleta-atual .cor-box:nth-child(4) { background: #fff; border: 1px solid #eee; }
+  .paleta-atual .cor-box:nth-child(4) .cor-nome, .paleta-atual .cor-box:nth-child(4) .cor-hex { color: #999; }
+  .paleta-atual .cor-box:nth-child(5) { background: #888; }
+  .paleta-atual .cor-box:nth-child(5) .cor-nome, .paleta-atual .cor-box:nth-child(5) .cor-hex { color: #ddd; }
+  .paleta-atual .cor-box:nth-child(6) { background: #444; }
+  .paleta-atual .cor-box:nth-child(6) .cor-nome, .paleta-atual .cor-box:nth-child(6) .cor-hex { color: #bbb; }
+
+  .paleta-nova .cor-box:nth-child(1) { background: #1a0e00; }
+  .paleta-nova .cor-box:nth-child(1) .cor-nome, .paleta-nova .cor-box:nth-child(1) .cor-hex { color: #c9a85c; }
+  .paleta-nova .cor-box:nth-child(2) { background: #4a1628; }
+  .paleta-nova .cor-box:nth-child(2) .cor-nome, .paleta-nova .cor-box:nth-child(2) .cor-hex { color: #e9d9de; }
+  .paleta-nova .cor-box:nth-child(3) { background: #c9a85c; }
+  .paleta-nova .cor-box:nth-child(3) .cor-nome, .paleta-nova .cor-box:nth-child(3) .cor-hex { color: #5a3a00; }
+  .paleta-nova .cor-box:nth-child(4) { background: #fdf6ee; }
+  .paleta-nova .cor-box:nth-child(4) .cor-nome, .paleta-nova .cor-box:nth-child(4) .cor-hex { color: #8a6630; }
+  .paleta-nova .cor-box:nth-child(5) { background: #f5f3ef; }
+  .paleta-nova .cor-box:nth-child(5) .cor-nome, .paleta-nova .cor-box:nth-child(5) .cor-hex { color: #6b5a3a; }
+  .paleta-nova .cor-box:nth-child(6) { background: #fff; border: 1px solid #eee; }
+  .paleta-nova .cor-box:nth-child(6) .cor-nome, .paleta-nova .cor-box:nth-child(6) .cor-hex { color: #bbb; }
+
+  .paleta-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6b5a3a; margin-bottom: 6px; font-weight: 600; }
+
+  /* ── TIPOGRAFIA ── */
+  .tipo-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .tipo-box { background: #fff; border: 1px solid #e8dfc8; border-radius: 2px; padding: 20px 24px; }
+  .tipo-box .tipo-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6b5a3a; margin-bottom: 12px; font-weight: 600; }
+  .tipo-box .tipo-titulo { margin-bottom: 4px; }
+  .tipo-box .tipo-sub { color: #6b5a3a; margin-bottom: 8px; }
+  .tipo-box p { line-height: 1.7; }
+  .tipo-tag { font-size: 10px; background: #f5f3ef; border: 1px solid #ddd5c5; padding: 3px 8px; border-radius: 2px; color: #6b5a3a; display: inline-block; margin-top: 8px; font-family: monospace; }
+
+  /* ── MOCKUPS ── */
+  .mockup-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; align-items: start; }
+  .mockup-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6b5a3a; margin-bottom: 8px; font-weight: 600; }
+
+  /* HEADER ATUAL */
+  .header-atual {
+    background: #111; padding: 12px 20px; border-radius: 4px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .header-atual .logo-a { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #c9a85c; }
+  .header-atual .menu-a { display: flex; gap: 12px; }
+  .header-atual .menu-a span { font-family: 'Inter', sans-serif; font-size: 10px; color: #999; }
+  .header-atual .btn-a { background: #c9a85c; color: #111; font-size: 9px; padding: 5px 10px; border-radius: 2px; font-family: 'Inter', sans-serif; font-weight: 600; }
+
+  /* HEADER NOVO */
+  .header-novo {
+    background: #1a0e00; border-radius: 4px; overflow: hidden;
+  }
+  .header-novo .top-bar {
+    background: #4a1628; padding: 6px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .header-novo .top-bar span { font-family: 'Inter', sans-serif; font-size: 9px; color: #e9d9de; }
+  .header-novo .main-bar {
+    padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #2a1800;
+  }
+  .header-novo .logo-n { font-family: 'Playfair Display', serif; font-size: 16px; color: #fff; }
+  .header-novo .logo-n span { color: #c9a85c; }
+  .header-novo .menu-n { display: flex; gap: 14px; }
+  .header-novo .menu-n a { font-family: 'Inter', sans-serif; font-size: 10px; color: #bdb08a; text-decoration: none; }
+  .header-novo .btn-n { background: #c9a85c; color: #1a0e00; font-size: 9px; padding: 6px 14px; border-radius: 1px; font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: .05em; }
+
+  /* CARD SERVIÇO ATUAL */
+  .card-atual {
+    background: #1a1a1a; border-radius: 4px; overflow: hidden;
+  }
+  .card-atual .img-a { background: linear-gradient(135deg, #333, #222); height: 90px; display: flex; align-items: center; justify-content: center; }
+  .card-atual .img-a span { font-size: 28px; }
+  .card-atual .body-a { padding: 14px 16px; }
+  .card-atual .body-a h4 { font-family: 'Inter', sans-serif; font-size: 12px; color: #c9a85c; margin-bottom: 6px; font-weight: 600; }
+  .card-atual .body-a p { font-family: 'Inter', sans-serif; font-size: 10px; color: #888; line-height: 1.5; margin-bottom: 10px; }
+  .card-atual .body-a .link-a { font-family: 'Inter', sans-serif; font-size: 10px; color: #c9a85c; }
+
+  /* CARD SERVIÇO NOVO */
+  .card-novo {
+    background: #fff; border: 1px solid #e8dfc8; border-top: 3px solid #4a1628; border-radius: 2px; overflow: hidden;
+  }
+  .card-novo .body-n { padding: 16px 18px; }
+  .card-novo .icon-n { width: 36px; height: 36px; background: #fdf6ee; border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 18px; }
+  .card-novo .body-n h4 { font-family: 'Playfair Display', serif; font-size: 13px; color: #1a0e00; margin-bottom: 6px; }
+  .card-novo .body-n p { font-family: 'Inter', sans-serif; font-size: 10.5px; color: #5a4a2a; line-height: 1.6; margin-bottom: 12px; }
+  .card-novo .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
+  .card-novo .tag-item { font-family: 'Inter', sans-serif; font-size: 9px; background: #fdf6ee; border: 1px solid #e0d0b0; color: #6b5a3a; padding: 2px 8px; border-radius: 2px; }
+  .card-novo .btn-n2 { font-family: 'Inter', sans-serif; font-size: 10px; color: #4a1628; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+  /* HERO ATUAL */
+  .hero-atual {
+    background: linear-gradient(to right, #0a0a0a, #1a1a1a); border-radius: 4px;
+    padding: 30px 24px; text-align: center;
+  }
+  .hero-atual h2 { font-family: 'Inter', sans-serif; font-size: 18px; color: #fff; margin-bottom: 6px; }
+  .hero-atual p { font-family: 'Inter', sans-serif; font-size: 11px; color: #888; margin-bottom: 16px; line-height: 1.5; }
+  .hero-atual .btns { display: flex; gap: 8px; justify-content: center; }
+  .hero-atual .btn-p { background: #c9a85c; color: #111; font-size: 10px; padding: 8px 16px; border-radius: 2px; font-family: 'Inter', sans-serif; font-weight: 600; }
+  .hero-atual .btn-s { border: 1px solid #555; color: #999; font-size: 10px; padding: 8px 16px; border-radius: 2px; font-family: 'Inter', sans-serif; }
+
+  /* HERO NOVO */
+  .hero-novo {
+    background: #1a0e00; border-radius: 4px; overflow: hidden;
+  }
+  .hero-novo .hero-inner {
+    padding: 28px 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    border-bottom: 1px solid #2a1800;
+  }
+  .hero-novo .eyebrow { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: #c9a85c; margin-bottom: 8px; }
+  .hero-novo h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+  .hero-novo p { font-family: 'Inter', sans-serif; font-size: 10px; color: #bdb08a; line-height: 1.6; margin-bottom: 16px; }
+  .hero-novo .btns-n { display: flex; gap: 8px; }
+  .hero-novo .btn-p2 { background: #c9a85c; color: #1a0e00; font-size: 10px; padding: 9px 18px; border-radius: 1px; font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: .04em; }
+  .hero-novo .btn-wa { background: #25D366; color: #fff; font-size: 10px; padding: 9px 18px; border-radius: 1px; font-family: 'Inter', sans-serif; font-weight: 600; }
+  .hero-novo .stats { display: flex; flex-direction: column; gap: 10px; }
+  .hero-novo .stat { text-align: right; }
+  .hero-novo .stat .num { font-family: 'Playfair Display', serif; font-size: 22px; color: #c9a85c; line-height: 1; }
+  .hero-novo .stat .lbl { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #6b5a3a; letter-spacing: .06em; }
+  .hero-novo .idiomas { padding: 8px 24px; display: flex; gap: 8px; background: #110800; }
+  .hero-novo .idiomas span { font-family: 'Inter', sans-serif; font-size: 9px; color: #6b5a3a; }
+  .hero-novo .idiomas .ativo { color: #c9a85c; font-weight: 600; }
+
+  /* FOOTER ATUAL */
+  .footer-atual { background: #111; border-radius: 4px; padding: 16px 20px; }
+  .footer-atual p { font-family: 'Inter', sans-serif; font-size: 10px; color: #555; margin-bottom: 4px; }
+  .footer-atual .links { display: flex; gap: 12px; margin-top: 10px; }
+  .footer-atual .links a { font-family: 'Inter', sans-serif; font-size: 9px; color: #c9a85c; text-decoration: none; }
+
+  /* FOOTER NOVO */
+  .footer-novo { background: #1a0e00; border-radius: 4px; overflow: hidden; }
+  .footer-novo .ft-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 20px; border-bottom: 1px solid #2a1800; }
+  .footer-novo .ft-col h5 { font-family: 'Playfair Display', serif; font-size: 11px; color: #c9a85c; margin-bottom: 8px; letter-spacing: .06em; }
+  .footer-novo .ft-col p, .footer-novo .ft-col a { font-family: 'Inter', sans-serif; font-size: 9.5px; color: #6b5a3a; display: block; margin-bottom: 3px; text-decoration: none; line-height: 1.5; }
+  .footer-novo .ft-col a:hover { color: #c9a85c; }
+  .footer-novo .ft-col .ordem { font-family: 'Inter', sans-serif; font-size: 8px; color: #4a3020; letter-spacing: .06em; margin-top: 6px; border-top: 1px solid #2a1800; padding-top: 6px; }
+  .footer-novo .ft-bottom { padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-novo .ft-bottom p { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #3a2a1a; }
+  .footer-novo .ft-bottom .rgpd { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #4a3020; }
+
+  /* CARD DEPOIMENTO NOVO */
+  .depo-novo { background: #fff; border: 1px solid #e8dfc8; border-radius: 2px; padding: 16px 18px; }
+  .depo-novo .estrelas { color: #c9a85c; font-size: 12px; letter-spacing: 2px; margin-bottom: 8px; }
+  .depo-novo blockquote { font-size: 11px; color: #3a2a1a; line-height: 1.65; font-style: italic; margin-bottom: 12px; }
+  .depo-novo .autor { display: flex; align-items: center; gap: 10px; }
+  .depo-novo .avatar { width: 32px; height: 32px; border-radius: 50%; background: #4a1628; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 12px; color: #c9a85c; flex-shrink: 0; }
+  .depo-novo .autor-info .nome { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: #1a0e00; }
+  .depo-novo .autor-info .detalhe { font-family: 'Inter', sans-serif; font-size: 9.5px; color: #8a6630; }
+  .depo-novo .google-tag { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #6b5a3a; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f0e8d8; }
+
+  /* ── BOTÃO WHATSAPP FLUTUANTE ── */
+  .wa-demo { position: relative; background: #f5f3ef; border: 1px solid #e8dfc8; border-radius: 4px; padding: 20px; height: 120px; }
+  .wa-demo p { font-family: 'Inter', sans-serif; font-size: 11px; color: #aaa; }
+  .wa-btn { position: absolute; bottom: 16px; right: 16px; background: #25D366; color: #fff; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; padding: 10px 16px; border-radius: 50px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(37,211,102,.3); }
+  .wa-btn .wa-icon { font-size: 16px; }
+
+  /* ── PROBLEMA/SOLUÇÃO ── */
+  .prob-sol { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .prob-box { padding: 14px 16px; border-radius: 2px; font-family: 'Inter', sans-serif; font-size: 11px; line-height: 1.6; }
+  .prob-box.antes { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+  .prob-box.depois { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .prob-box .blabel { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; opacity: .7; }
+
+  /* ── OBSERVAÇÃO ── */
+  .obs { background: #fdf6ee; border-left: 3px solid #c9a85c; padding: 12px 16px; font-size: 12px; line-height: 1.6; color: #3a2a1a; margin: 16px 0; border-radius: 0 2px 2px 0; }
+  .obs strong { color: #4a1628; }
+
+  .footer-rel {
+    background: #1a0e00; color: #6b5a3a; text-align: center;
+    padding: 24px; font-size: 11px; letter-spacing: .08em; margin-top: 60px; border-top: 2px solid #4a1628;
+  }
+  .footer-rel span { color: #c9a85c; }
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div>
+    <h1>ANÁLISE DE DESIGN — SITE</h1>
+    <p>ma-advocacia.com · Mockups e recomendações visuais · Junho 2026</p>
+  </div>
+  <a class="badge-site" href="https://ma-advocacia.com" target="_blank">↗ Ver Site</a>
+</div>
+
+<div class="container">
+
+<!-- ─── PALETA ─── -->
+<div class="secao-titulo">1. Paleta de Cores</div>
+
+<div class="obs">O site usa preto genérico (#0a0a0a / #1a1a1a) como base. <strong>A sugestão é migrar para o preto-castanho quente (#1a0e00) com vinho (#4a1628)</strong> — já usado nas propostas de serviço — que transmite mais calor, sofisticação jurídica e distingue o escritório de sites puramente corporativos. O dourado mantém-se como acento principal.</div>
+
+<div class="paleta-label">Paleta actual — preto frio genérico</div>
+<div class="paleta-grid paleta-atual">
+  <div class="cor-box"><span class="cor-nome">FUNDO</span><span class="cor-hex">#0a0a0a</span></div>
+  <div class="cor-box"><span class="cor-nome">CARD</span><span class="cor-hex">#1a1a1a</span></div>
+  <div class="cor-box"><span class="cor-nome">ACENTO</span><span class="cor-hex">#c9a85c</span></div>
+  <div class="cor-box"><span class="cor-nome">TEXTO</span><span class="cor-hex">#ffffff</span></div>
+  <div class="cor-box"><span class="cor-nome">MUTED</span><span class="cor-hex">#888888</span></div>
+  <div class="cor-box"><span class="cor-nome">BORDER</span><span class="cor-hex">#444444</span></div>
+</div>
+
+<div class="paleta-label" style="margin-top:16px;">Paleta sugerida — quente, distinto, jurídico</div>
+<div class="paleta-grid paleta-nova">
+  <div class="cor-box"><span class="cor-nome">FUNDO</span><span class="cor-hex">#1a0e00</span></div>
+  <div class="cor-box"><span class="cor-nome">ACENTO VINHO</span><span class="cor-hex">#4a1628</span></div>
+  <div class="cor-box"><span class="cor-nome">OURO</span><span class="cor-hex">#c9a85c</span></div>
+  <div class="cor-box"><span class="cor-nome">CREME</span><span class="cor-hex">#fdf6ee</span></div>
+  <div class="cor-box"><span class="cor-nome">FUNDO CLARO</span><span class="cor-hex">#f5f3ef</span></div>
+  <div class="cor-box"><span class="cor-nome">BRANCO</span><span class="cor-hex">#ffffff</span></div>
+</div>
+
+<!-- ─── TIPOGRAFIA ─── -->
+<div class="secao-titulo">2. Tipografia</div>
+
+<div class="tipo-compare">
+  <div class="tipo-box">
+    <div class="tipo-label">❌ Actual — Sans-serif genérica</div>
+    <div class="tipo-titulo" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:#1a0e00;margin-bottom:4px;">Advocacia de Imigração</div>
+    <div class="tipo-sub" style="font-family:'Inter',sans-serif;font-size:12px;margin-bottom:10px;">Serviços jurídicos em Portugal</div>
+    <p style="font-family:'Inter',sans-serif;font-size:11px;color:#5a4a2a;">O uso de uma única fonte sans-serif em todo o site torna-o visual­mente idêntico a qualquer site corporativo genérico.</p>
+    <span class="tipo-tag">font: system-ui / sans-serif</span>
+  </div>
+  <div class="tipo-box">
+    <div class="tipo-label">✓ Sugerido — Serif para títulos + Sans para corpo</div>
+    <div class="tipo-titulo" style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a0e00;margin-bottom:4px;">Advocacia de Imigração</div>
+    <div class="tipo-sub" style="font-family:'Lora',serif;font-size:12px;color:#6b5a3a;margin-bottom:10px;">Serviços jurídicos em Portugal</div>
+    <p style="font-family:'Inter',sans-serif;font-size:11px;color:#5a4a2a;">Playfair Display nos títulos transmite autoridade e elegância. Lora no subtítulo acrescenta calor. Inter no corpo garante legibilidade perfeita em ecrã.</p>
+    <span class="tipo-tag">Playfair Display + Lora + Inter</span>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="secao-titulo">3. Secção Hero (topo da página)</div>
+
+<div class="mockup-wrap">
+  <div>
+    <div class="mockup-label">❌ Actual — texto genérico, sem hierarquia</div>
+    <div class="hero-atual">
+      <h2>MA Advocacia</h2>
+      <p>Se você tem algum problema legal, estamos disponíveis para ajudar com sua situação.</p>
+      <div class="btns">
+        <div class="btn-p">Realizar uma Consulta</div>
+        <div class="btn-s">Ver Serviços</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="mockup-label">✓ Sugerido — específico, com stats e WhatsApp</div>
+    <div class="hero-novo">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Escritório de Advocacia · Lisboa, Portugal</div>
+          <h2>Especialistas em<br>Imigração para Portugal</h2>
+          <p>NIF, NISS, Reagrupamento Familiar, Autorização de Residência e Recursos AIMA. Atendimento em Português, Inglês e Espanhol.</p>
+          <div class="btns-n">
+            <div class="btn-p2">Avaliar o meu caso</div>
+            <div class="btn-wa">💬 WhatsApp</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">+500</div><div class="lbl">Processos<br>concluídos</div></div>
+          <div class="stat"><div class="num">8+</div><div class="lbl">Anos de<br>experiência</div></div>
+        </div>
+      </div>
+      <div class="idiomas">
+        <span class="ativo">🇵🇹 Português</span>
+        <span>🇬🇧 English</span>
+        <span>🇪🇸 Español</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CARDS DE SERVIÇO ─── -->
+<div class="secao-titulo">4. Cards de Serviço</div>
+
+<div class="mockup-wrap">
+  <div>
+    <div class="mockup-label">❌ Actual — dark, genérico, sem detalhe</div>
+    <div class="card-atual">
+      <div class="img-a"><span>⚖️</span></div>
+      <div class="body-a">
+        <h4>Assessoria em Processos de Imigração</h4>
+        <p>Auxiliamos na obtenção de vistos (D7, Golden Visa), residência e reagrupamento...</p>
+        <div class="link-a">Ver Detalhe >></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="mockup-label">✓ Sugerido — light, estruturado, com tags</div>
+    <div class="card-novo">
+      <div class="body-n">
+        <div class="icon-n">⚖️</div>
+        <h4>Reagrupamento Familiar</h4>
+        <p>Processo completo junto da AIMA: análise de elegibilidade, preparação dos documentos e acompanhamento até à decisão. Prazo legal: até 9 meses.</p>
+        <div class="tags">
+          <span class="tag-item">Cônjuge</span>
+          <span class="tag-item">Filhos</span>
+          <span class="tag-item">Pais</span>
+          <span class="tag-item">Lei 61/2025</span>
+        </div>
+        <div class="btn-n2">Saber mais sobre este serviço →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DEPOIMENTOS ─── -->
+<div class="secao-titulo">5. Depoimentos</div>
+
+<div class="prob-sol">
+  <div class="prob-box antes">
+    <div class="blabel">❌ Actual</div>
+    <strong>"FELIPE"</strong><br>
+    "Excelente atendimento!"<br><br>
+    <em>Sem sobrenome, sem data, sem serviço utilizado, sem verificação</em>
+  </div>
+  <div class="prob-box depois">
+    <div class="blabel">✓ Sugerido</div>
+    Ver mockup abaixo ↓
+  </div>
+</div>
+
+<div style="max-width:380px;">
+  <div class="depo-novo">
+    <div class="estrelas">★★★★★</div>
+    <blockquote>"O escritório tratou do meu reagrupamento familiar com muito profissionalismo. Em 6 meses conseguimos reunir toda a família em Portugal."</blockquote>
+    <div class="autor">
+      <div class="avatar">FR</div>
+      <div class="autor-info">
+        <div class="nome">Felipe R.</div>
+        <div class="detalhe">Brasil → Portugal · Reagrupamento Familiar · Abril 2026</div>
+      </div>
+    </div>
+    <div class="google-tag">✓ Avaliação verificada no Google</div>
+  </div>
+</div>
+
+<!-- ─── WHATSAPP FLUTUANTE ─── -->
+<div class="secao-titulo">6. Botão WhatsApp Flutuante</div>
+
+<div class="obs"><strong>Clientes de imigração contactam maioritariamente por WhatsApp.</strong> Um botão flutuante visível em toda a página pode duplicar o número de contactos recebidos. Custo de implementação: 5 minutos com um plugin WordPress ou 3 linhas de código.</div>
+
+<div class="wa-demo">
+  <p style="font-size:10px;">Conteúdo da página...</p>
+  <div class="wa-btn"><span class="wa-icon">💬</span> Falar no WhatsApp</div>
+</div>
+<div style="font-size:11px;color:#6b5a3a;margin-top:8px;font-style:italic;">↑ Botão fixo no canto inferior direito, visível em todas as páginas</div>
+
+<!-- ─── HEADER ─── -->
+<div class="secao-titulo">7. Cabeçalho (Header)</div>
+
+<div style="margin-bottom:12px;">
+  <div class="mockup-label">❌ Actual — uma só barra, info misturada</div>
+  <div class="header-atual">
+    <div class="logo-a">MA Advocacia</div>
+    <div class="menu-a">
+      <span>Home</span><span>Quem somos</span><span>Equipe</span><span>Áreas</span><span>Contato</span>
+    </div>
+    <div class="btn-a">Consultar Processos</div>
+  </div>
+</div>
+
+<div>
+  <div class="mockup-label">✓ Sugerido — duas barras, informação hierarquizada</div>
+  <div class="header-novo">
+    <div class="top-bar">
+      <span>📧 marcio.andrio@ma-advocacia.com &nbsp;·&nbsp; 📞 +351 960 389 573</span>
+      <span>Inscrito na Ordem dos Advogados n.º [XXXX]</span>
+    </div>
+    <div class="main-bar">
+      <div class="logo-n">MA <span>Advocacia</span></div>
+      <div class="menu-n">
+        <a href="#">Início</a><a href="#">Quem Somos</a><a href="#">A Nossa Equipa</a><a href="#">Serviços</a><a href="#">Contacto</a>
+      </div>
+      <div class="btn-n">Avaliar o meu caso</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RODAPÉ ─── -->
+<div class="secao-titulo">8. Rodapé (Footer)</div>
+
+<div style="margin-bottom:12px;">
+  <div class="mockup-label">❌ Actual — links sem contexto, sem RGPD</div>
+  <div class="footer-atual">
+    <p style="color:#888;">© MA Advocacia</p>
+    <div class="links">
+      <a href="#">Link da ordem</a>
+      <a href="#">tribunal de pesquisa</a>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mockup-label">✓ Sugerido — 3 colunas, credenciais, RGPD</div>
+  <div class="footer-novo">
+    <div class="ft-top">
+      <div class="ft-col">
+        <h5>MA Advocacia</h5>
+        <p>Especialistas em direito de imigração em Portugal desde 2018.</p>
+        <div class="ordem">Inscrito na OA n.º [XXXX] · OAB/AM [XXXX]</div>
+      </div>
+      <div class="ft-col">
+        <h5>Serviços</h5>
+        <a href="#">NIF e NISS</a>
+        <a href="#">Reagrupamento Familiar</a>
+        <a href="#">Autorização de Residência</a>
+        <a href="#">Recursos AIMA (NAV)</a>
+      </div>
+      <div class="ft-col">
+        <h5>Links Úteis</h5>
+        <a href="#">Verificar advogado (Ordem PT)</a>
+        <a href="#">Pesquisar processos (CITIUS)</a>
+        <a href="#">Portal AIMA</a>
+        <a href="#">Política de Privacidade</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 MA Advocacia. Todos os direitos reservados.</p>
+      <div class="rgpd">Protegido pelo RGPD · Política de Cookies</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RESUMO ─── -->
+<div class="secao-titulo">Resumo das Alterações de Design</div>
+
+<div style="background:#fff;border:1px solid #e8dfc8;border-radius:2px;padding:24px 28px;">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="border-bottom:1.5px solid #c9a85c;">
+        <th style="font-family:'Playfair Display',serif;text-align:left;padding:6px 8px;color:#4a1628;letter-spacing:.06em;font-size:11px;">Elemento</th>
+        <th style="font-family:'Playfair Display',serif;text-align:left;padding:6px 8px;color:#4a1628;letter-spacing:.06em;font-size:11px;">Actual</th>
+        <th style="font-family:'Playfair Display',serif;text-align:left;padding:6px 8px;color:#4a1628;letter-spacing:.06em;font-size:11px;">Sugerido</th>
+        <th style="font-family:'Playfair Display',serif;text-align:center;padding:6px 8px;color:#4a1628;letter-spacing:.06em;font-size:11px;">Impacto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Cores</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Preto frio #0a0a0a</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">#1a0e00 + #4a1628 + #c9a85c</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Alto</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Tipografia</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Sans-serif única</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Playfair + Lora + Inter</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Alto</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Hero</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Genérico, sem dados</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Específico + stats + WhatsApp</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Muito alto</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Cards de serviço</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Dark, sem detalhe</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Light, com tags e CTA específico</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Alto</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Depoimentos</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Primeiro nome apenas</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Avatar + contexto + Google Review</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Médio</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">WhatsApp</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Ausente</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Botão flutuante em todas as páginas</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Muito alto</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0e8d8;">
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Header</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Uma barra, info misturada</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">Duas barras hierarquizadas</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Médio</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px;color:#1a0e00;font-family:'Inter',sans-serif;">Footer</td>
+        <td style="padding:7px 8px;color:#6b5a3a;font-family:'Inter',sans-serif;">Mínimo, sem RGPD</td>
+        <td style="padding:7px 8px;color:#3a6b1a;font-family:'Inter',sans-serif;">3 colunas, credenciais, RGPD</td>
+        <td style="padding:7px 8px;text-align:center;color:#c9a85c;font-family:'Inter',sans-serif;font-weight:600;">Médio</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer-rel">
+  Análise de design para <span>MA Advocacia</span> · ma-advocacia.com · Junho 2026
+</div>
+
+</body>
+</html>
