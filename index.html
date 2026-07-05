@@ -1203,25 +1203,25 @@ footer {
         </div>
       </div>
     </div>
-    <div class="form-contacto">
+    <form class="form-contacto" action="https://formspree.io/f/mjkwrqzg" method="POST">
       <h3>Avaliação de Caso</h3>
       <div class="form-grid">
         <div class="form-grupo">
           <label>Nome completo</label>
-          <input type="text" placeholder="O seu nome">
+          <input type="text" name="nome" placeholder="O seu nome" required>
         </div>
         <div class="form-grupo">
           <label>Telefone / WhatsApp</label>
-          <input type="tel" placeholder="+351 000 000 000">
+          <input type="tel" name="telefone" placeholder="+351 000 000 000">
         </div>
       </div>
       <div class="form-grupo">
         <label>E-mail</label>
-        <input type="email" placeholder="email@exemplo.com">
+        <input type="email" name="email" placeholder="email@exemplo.com" required>
       </div>
       <div class="form-grupo">
         <label>Serviço pretendido</label>
-        <select>
+        <select name="servico">
           <option value="">Seleccione o serviço...</option>
           <option>NIF / NISS</option>
           <option>Reagrupamento Familiar</option>
@@ -1233,11 +1233,12 @@ footer {
       </div>
       <div class="form-grupo">
         <label>Descreva brevemente a sua situação</label>
-        <textarea placeholder="Indique a sua nacionalidade, há quanto tempo está em Portugal e qual a sua situação actual..."></textarea>
+        <textarea name="mensagem" placeholder="Indique a sua nacionalidade, há quanto tempo está em Portugal e qual a sua situação actual..." required></textarea>
       </div>
-      <button class="btn-form">Enviar pedido de avaliação</button>
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="btn-form">Enviar pedido de avaliação</button>
       <p class="form-nota">Ao enviar este formulário, aceita a nossa <a href="#">Política de Privacidade</a>. Os seus dados são tratados de acordo com o RGPD e utilizados exclusivamente para responder ao seu pedido.</p>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -1262,16 +1263,16 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Links Úteis</h4>
-      <a href="https://verificar.oa.pt" target="_blank">Verificar advogado (Ordem PT)</a>
-      <a href="https://citius.tribunaisnet.mj.pt" target="_blank">Pesquisar processos (CITIUS)</a>
-      <a href="https://aima.gov.pt" target="_blank">Portal AIMA</a>
-      <a href="https://vistos.mne.gov.pt" target="_blank">Portal de Vistos MNE</a>
+      <a href="https://verificar.oa.pt" target="_blank" rel="noopener noreferrer">Verificar advogado (Ordem PT)</a>
+      <a href="https://citius.tribunaisnet.mj.pt" target="_blank" rel="noopener noreferrer">Pesquisar processos (CITIUS)</a>
+      <a href="https://aima.gov.pt" target="_blank" rel="noopener noreferrer">Portal AIMA</a>
+      <a href="https://vistos.mne.gov.pt" target="_blank" rel="noopener noreferrer">Portal de Vistos MNE</a>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <a href="tel:+351960389573">📞 +351 960 389 573</a>
       <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
-      <a href="https://wa.me/351960389573" target="_blank">💬 WhatsApp</a>
+      <a href="https://wa.me/351960389573" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
       <a href="#">📍 Lisboa, Portugal</a>
     </div>
   </div>
@@ -1287,7 +1288,7 @@ footer {
 </footer>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/351960389573" class="wa-float" target="_blank">
+<a href="https://wa.me/351960389573" class="wa-float" target="_blank" rel="noopener noreferrer">
   💬 Falar no WhatsApp
 </a>
 
