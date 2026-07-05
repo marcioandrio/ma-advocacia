@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Serviços — MA Advocacia</title>
-<meta name="description" content="Serviços de imigração em Portugal: NIF, NISS, Reagrupamento Familiar, Autorização de Residência, Recurso NAV. Tabela de honorários transparente.">
+<meta name="description" content="Serviços de imigração em Portugal: NIF, NISS, Reagrupamento Familiar, Autorização de Residência, Recurso NAV.">
 <link rel="icon" href="../../img/icone/ma.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -100,14 +100,6 @@ nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro);
 }
 .card-servico-full h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--preto); margin-bottom: 4px; }
 .card-servico-full .sub-h3 { font-size: 12px; color: var(--muted); }
-.preco-destaque {
-  text-align: right; flex-shrink: 0;
-}
-.preco-destaque .valor {
-  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--vinho); line-height: 1;
-}
-.preco-destaque .valor-label { font-size: 10px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: 3px; }
-
 .card-body { padding: 20px 24px; }
 .card-body p { font-size: 13.5px; color: var(--muted2); line-height: 1.7; margin-bottom: 14px; }
 
@@ -141,22 +133,6 @@ nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro);
 }
 .card-footer .btn-pedir:hover { background: var(--preto); }
 .card-footer .nota-foot { font-size: 11px; color: var(--muted); font-style: italic; }
-
-/* TABELA RESUMO */
-.tabela-resumo { background: #fff; border: 1px solid var(--borda); border-radius: 2px; overflow: hidden; margin-top: 32px; }
-.tabela-resumo h3 {
-  font-family: 'Playfair Display', serif; font-size: 15px; color: var(--preto);
-  padding: 16px 20px; border-bottom: 1.5px solid var(--ouro); background: var(--creme);
-}
-.tabela-resumo table { width: 100%; border-collapse: collapse; }
-.tabela-resumo th {
-  font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-  padding: 10px 16px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--borda);
-}
-.tabela-resumo td { font-size: 12.5px; color: var(--muted2); padding: 10px 16px; border-bottom: 1px solid #f0e8d8; }
-.tabela-resumo tr:last-child td { border-bottom: none; }
-.tabela-resumo .td-preco { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--vinho); }
-.tabela-resumo .td-link { color: var(--ouro); font-size: 12px; font-weight: 600; }
 
 /* FOOTER */
 footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
@@ -196,7 +172,7 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
     <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
     <a href="tel:+351960389573">📞 +351 960 389 573</a>
   </div>
-  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]</div>
+  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º 68721P</div>
 </div>
 
 <!-- HEADER -->
@@ -204,10 +180,10 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
   <a href="index.html" class="logo">MA <span>Advocacia</span><small>Especialistas em Imigração</small></a>
   <nav>
     <a href="index.html">Início</a>
-    <a href="#">Quem Somos</a>
-    <a href="#">A Nossa Equipa</a>
+    <a href="index.html#quem-somos">Quem Somos</a>
+    <a href="index.html#equipa">A Nossa Equipa</a>
     <a href="servicos.html" class="ativo">Serviços</a>
-    <a href="#">Contacto</a>
+    <a href="index.html#contacto">Contacto</a>
   </nav>
   <a href="index.html#contacto" class="btn-cta">Avaliar o meu caso</a>
 </header>
@@ -238,10 +214,6 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               <h3>NIF e NISS</h3>
               <div class="sub-h3">Número de Identificação Fiscal · Número de Identificação da Segurança Social</div>
             </div>
-          </div>
-          <div class="preco-destaque">
-            <div class="valor">€ 80</div>
-            <div class="valor-label">por documento</div>
           </div>
         </div>
         <div class="card-body">
@@ -289,10 +261,6 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               <div class="sub-h3">Art.º 98.º Lei de Estrangeiros · Lei n.º 61/2025</div>
             </div>
           </div>
-          <div class="preco-destaque">
-            <div class="valor">€ 1.000</div>
-            <div class="valor-label">processo completo</div>
-          </div>
         </div>
         <div class="card-body">
           <p>O Reagrupamento Familiar é o direito que assiste a quem já possui residência legal em Portugal a viver junto dos seus familiares mais próximos. Com a Lei n.º 61/2025, foram introduzidas novas regras. O processo inclui análise, preparação de toda a documentação, submissão na AIMA e acompanhamento até à decisão final.</p>
@@ -339,10 +307,6 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               <div class="sub-h3">Ação Judicial · Solicitação do Cartão de Residência</div>
             </div>
           </div>
-          <div class="preco-destaque">
-            <div class="valor">€ 1.000</div>
-            <div class="valor-label">processo completo</div>
-          </div>
         </div>
         <div class="card-body">
           <p>Acompanhamento jurídico completo no pedido de Autorização de Residência junto da AIMA, incluindo a fase de instrução do processo, submissão e acompanhamento até à emissão do Cartão de Residência.</p>
@@ -377,16 +341,12 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               <div class="sub-h3">Notificação de Abandono Voluntário · Recurso Administrativo + Ação Judicial</div>
             </div>
           </div>
-          <div class="preco-destaque">
-            <div class="valor">€ 1.400</div>
-            <div class="valor-label">recurso + ação judicial</div>
-          </div>
         </div>
         <div class="card-body">
           <p>A NAV é emitida pela AIMA quando um pedido de residência é indeferido, determinando a saída do território português em 20 dias. Contestamos a NAV por via administrativa e, se necessário, judicial nos Tribunais Administrativos — suspendendo os seus efeitos e protegendo a sua permanência em Portugal.</p>
           <div class="dois-col">
             <div class="info-bloco">
-              <h5>Recurso Administrativo — € 700</h5>
+              <h5>Recurso Administrativo</h5>
               <ul>
                 <li>Análise jurídica da NAV e do indeferimento</li>
                 <li>Arguição de ilegalidades e vícios de forma</li>
@@ -395,7 +355,7 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               </ul>
             </div>
             <div class="info-bloco">
-              <h5>Ação Judicial — € 700</h5>
+              <h5>Ação Judicial</h5>
               <ul>
                 <li>Após 60 dias úteis sem decisão da AIMA</li>
                 <li>Ação nos Tribunais Administrativos</li>
@@ -426,10 +386,6 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
               <div class="sub-h3">Silêncio Administrativo · Recurso Hierárquico por Demora Excessiva</div>
             </div>
           </div>
-          <div class="preco-destaque">
-            <div class="valor">€ 400</div>
-            <div class="valor-label">recurso hierárquico</div>
-          </div>
         </div>
         <div class="card-body">
           <p>O CPA estabelece que a AIMA tem o prazo máximo de 90 dias para se pronunciar. Ultrapassado esse prazo sem resposta, ocorre silêncio administrativo — situação que pode e deve ser contestada. O recurso hierárquico exige decisão expressa e frequentemente desbloqueia processos parados.</p>
@@ -455,40 +411,6 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
       </div>
 
     </div><!-- /servicos-lista -->
-
-    <!-- TABELA RESUMO -->
-    <div class="tabela-resumo">
-      <h3>Tabela de Honorários</h3>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:40%">Serviço</th>
-            <th style="width:20%">Honorários</th>
-            <th>Observações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>NIF / Troca de Senha NIF / Morada Fiscal</td><td class="td-preco">€ 80</td><td>Por serviço</td></tr>
-          <tr><td>NISS / Senha de NISS</td><td class="td-preco">€ 300 / € 80</td><td>Por serviço</td></tr>
-          <tr><td>Abertura de Atividade</td><td class="td-preco">€ 80</td><td>Recibos verdes</td></tr>
-          <tr><td>Utente SNS</td><td class="td-preco">€ 80</td><td>Inscrição no SNS</td></tr>
-          <tr><td>Legal Entry</td><td class="td-preco">€ 30</td><td>Declaração de entrada legal</td></tr>
-          <tr><td>Declaração de Alojamento</td><td class="td-preco">€ 30</td><td>Para senhorios e inquilinos</td></tr>
-          <tr><td>Certificação de Passaporte</td><td class="td-preco">€ 15</td><td>Todas as folhas</td></tr>
-          <tr><td>Reconhecimento de Assinatura</td><td class="td-preco">€ 25</td><td>Simples</td></tr>
-          <tr><td>Tradução de Documentos</td><td class="td-preco">€ 15/folha</td><td>Por página traduzida</td></tr>
-          <tr><td>Declaração SIS</td><td class="td-preco">€ 50</td><td>Sistema de Informação Schengen</td></tr>
-          <tr><td>Contestação de Tempo AIMA</td><td class="td-preco">€ 200</td><td>Verificação de prazo</td></tr>
-          <tr><td>Recurso Administrativo Hierárquico</td><td class="td-preco">€ 400</td><td>Processo parado +90 dias</td></tr>
-          <tr><td>Autorização de Residência / Ação Judicial</td><td class="td-preco">€ 1.000</td><td>Processo completo</td></tr>
-          <tr><td>Reagrupamento Familiar</td><td class="td-preco">€ 1.000</td><td>Análise + submissão + acompanhamento</td></tr>
-          <tr><td>Recurso NAV (Admin. + Judicial)</td><td class="td-preco">€ 1.400</td><td>Após 60 dias úteis do recurso</td></tr>
-        </tbody>
-      </table>
-      <div style="padding:14px 20px;background:var(--creme);border-top:1px solid var(--borda);font-size:11px;color:var(--muted);font-style:italic;line-height:1.6;">
-        * Valores referentes a honorários de advocacia. Não incluem taxas públicas (AIMA, Finanças, Segurança Social), apostila, traduções juramentadas ou deslocações. Preços sujeitos a atualização.
-      </div>
-    </div>
 
   </div><!-- /conteúdo -->
 
@@ -520,7 +442,7 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
     <div class="footer-col">
       <h4>MA Advocacia</h4>
       <p>Especialistas em direito de imigração, com sede em Lisboa. Apoio a cidadãos estrangeiros em todas as fases do processo de regularização em Portugal.</p>
-      <div class="footer-ordem">Marcio Andrio · Inscrito na OA n.º [XXXX] · OAB/AM [XXXX]</div>
+      <div class="footer-ordem">Marcio Andrio · Inscrito na OA n.º 68721P · OAB/AM 17.196</div>
     </div>
     <div class="footer-col">
       <h4>Serviços</h4>
@@ -551,7 +473,7 @@ footer { background: #110800; border-top: 1px solid #2a1800; margin-top: 0; }
   </div>
 </footer>
 
-<a href="https://wa.me/351960389573" class="wa-float" target="_blank">💬 Falar no WhatsApp</a>
+<a href="https://wa.me/351960389573" class="wa-float" target="_blank" rel="noopener noreferrer">💬 Falar no WhatsApp</a>
 
 </body>
 </html>
