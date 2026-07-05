@@ -1291,5 +1291,16 @@ footer {
   💬 Falar no WhatsApp
 </a>
 
+<script>
+  if (window.location.hash) {
+    var alvo = document.getElementById(window.location.hash.slice(1));
+    if (alvo) {
+      window.addEventListener('load', function () {
+        alvo.scrollIntoView();
+      });
+    }
+  }
+</script>
+
 </body>
 </html>
