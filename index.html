@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MA Advocacia — Especialistas em Imigração em Portugal</title>
 <meta name="description" content="MA Advocacia — Especialistas em imigração em Portugal. NIF, NISS, Reagrupamento Familiar, Autorização de Residência, Recursos AIMA. Lisboa. +351 960 389 573">
-<link rel="icon" href="../../img/icone/ma.png">
+<link rel="icon" href="img/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,6 +24,7 @@
 }
 
 html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 86px; }
 
 body {
   background: var(--bg);
@@ -79,6 +80,15 @@ a { text-decoration: none; color: inherit; }
   font-size: 22px;
   color: #fff;
   letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-img {
+  height: 42px;
+  width: 42px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 .logo span { color: var(--ouro); }
 .logo small {
@@ -116,7 +126,9 @@ nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro);
 
 /* ── HERO ── */
 .hero {
-  background: var(--preto);
+  background:
+    linear-gradient(100deg, rgba(26,14,0,.97) 20%, rgba(26,14,0,.78) 55%, rgba(26,14,0,.55) 100%),
+    url('img/fundodesktop.jpg') center 30% / cover no-repeat;
   padding: 80px 48px;
   position: relative;
   overflow: hidden;
@@ -125,7 +137,7 @@ nav a:hover, nav a.ativo { color: var(--ouro); border-bottom-color: var(--ouro);
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(ellipse at 80% 50%, rgba(74,22,40,.4) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,22,40,.45) 0%, transparent 60%);
 }
 .hero-inner {
   max-width: 1100px;
@@ -314,6 +326,43 @@ h2.titulo-secao.claro { color: #fff; }
 }
 .ver-todos:hover { color: var(--muted); }
 
+/* ── QUEM SOMOS ── */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.sobre-imagem {
+  position: relative;
+}
+.sobre-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: grayscale(25%) sepia(8%) contrast(1.03);
+  display: block;
+}
+.sobre-imagem::before {
+  content: '';
+  position: absolute;
+  top: -14px; left: -14px;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--ouro);
+  border-radius: 2px;
+  z-index: -1;
+}
+.sobre-texto p {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  max-width: 520px;
+}
+
 /* ── SERVIÇOS ── */
 .grid-servicos {
   display: grid;
@@ -384,7 +433,7 @@ h2.titulo-secao.claro { color: #fff; }
 /* ── NÚMEROS ── */
 .grid-numeros {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: #2a1800;
   border: 1px solid #2a1800;
@@ -433,6 +482,14 @@ h2.titulo-secao.claro { color: #fff; }
   align-items: center;
   justify-content: center;
   border-right: 1px solid var(--borda);
+  overflow: hidden;
+}
+.card-pessoa .foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 .card-pessoa .foto .iniciais {
   font-family: 'Playfair Display', serif;
@@ -805,12 +862,19 @@ footer {
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .barra-topo, .header, .secao, .secao-contacto { padding-left: 20px; padding-right: 20px; }
-  .hero { padding: 48px 20px; }
+  .hero {
+    padding: 48px 20px;
+    background:
+      linear-gradient(180deg, rgba(26,14,0,.65) 0%, rgba(26,14,0,.92) 65%, rgba(26,14,0,.98) 100%),
+      url('img/fundocelular.jpeg') center top / cover no-repeat;
+  }
   .hero-inner { grid-template-columns: 1fr; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .sobre-grid .sobre-imagem { order: -1; }
   .hero-stats { display: none; }
   .hero h1 { font-size: 30px; }
   .grid-servicos { grid-template-columns: 1fr; }
-  .grid-numeros { grid-template-columns: 1fr 1fr; }
+  .grid-numeros { grid-template-columns: 1fr; }
   .grid-equipa { grid-template-columns: 1fr; }
   .grid-depo { grid-template-columns: 1fr; }
   .grid-processo { grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -838,21 +902,22 @@ footer {
   <div class="contactos">
     <a href="mailto:marcio.andrio@ma-advocacia.com">✉ marcio.andrio@ma-advocacia.com</a>
     <a href="tel:+351960389573">📞 +351 960 389 573</a>
-    <a href="tel:+5592988888888">📞 +55 (92) 9 8888-8888</a>
+    <a href="tel:+5592992659797">📞 +55 (92) 9 9265-9797</a>
   </div>
-  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]</div>
+  <div class="direita">Inscrito na Ordem dos Advogados Portugueses n.º 68721P</div>
 </div>
 
 <!-- HEADER -->
 <header class="header">
   <a href="index.html" class="logo">
-    MA <span>Advocacia</span>
-    <small>Especialistas em Imigração</small>
+    <img src="img/logo.png" alt="MA Advocacia" class="logo-img">
+    <span class="logo-texto">MA <span>Advocacia</span>
+    <small>Especialistas em Imigração</small></span>
   </a>
   <nav>
     <a href="#" class="ativo">Início</a>
-    <a href="#">Quem Somos</a>
-    <a href="#">A Nossa Equipa</a>
+    <a href="#quem-somos">Quem Somos</a>
+    <a href="#equipa">A Nossa Equipa</a>
     <a href="servicos.html">Serviços</a>
     <a href="#">Contacto</a>
   </nav>
@@ -883,10 +948,6 @@ footer {
         <div class="lbl">Processos de imigração<br>concluídos com sucesso</div>
       </div>
       <div class="stat">
-        <div class="num">8+</div>
-        <div class="lbl">Anos de experiência<br>em direito de estrangeiros</div>
-      </div>
-      <div class="stat">
         <div class="num">20+</div>
         <div class="lbl">Nacionalidades<br>atendidas</div>
       </div>
@@ -905,10 +966,6 @@ footer {
     <div class="lbl">Processos<br>concluídos</div>
   </div>
   <div class="numero-box">
-    <div class="num">8+</div>
-    <div class="lbl">Anos de<br>experiência</div>
-  </div>
-  <div class="numero-box">
     <div class="num">20+</div>
     <div class="lbl">Nacionalidades<br>atendidas</div>
   </div>
@@ -917,6 +974,23 @@ footer {
     <div class="lbl">Taxa de aprovação<br>nos processos</div>
   </div>
 </div>
+
+<!-- QUEM SOMOS -->
+<section class="secao secao-alt" id="quem-somos">
+  <div class="secao-inner sobre-grid">
+    <div class="sobre-texto">
+      <div class="eyebrow">Quem somos</div>
+      <h2 class="titulo-secao">Um escritório dedicado a quem escolheu Portugal</h2>
+      <p>A MA Advocacia é especializada em direito de imigração, oferecendo suporte completo na obtenção de vistos, cidadania portuguesa e emissão de documentos como NIF e NISS.</p>
+      <p>Com uma equipa experiente e multilingue, garantimos um atendimento personalizado, ético e eficiente, ajudando estrangeiros a realizar o sonho de viver em Portugal.</p>
+      <p>Acompanhamos cada processo junto da AIMA e dos Tribunais Administrativos até à decisão final, com transparência em cada etapa.</p>
+      <a href="#contacto" class="btn-primary" style="display:inline-block;margin-top:8px;">Fale connosco</a>
+    </div>
+    <div class="sobre-imagem">
+      <img src="img/desktop.jpg" alt="Mesa de trabalho do escritório MA Advocacia" loading="lazy">
+    </div>
+  </div>
+</section>
 
 <!-- SERVIÇOS -->
 <section class="secao" id="servicos">
@@ -934,42 +1008,42 @@ footer {
         <div class="icone">🛂</div>
         <h3>NIF e NISS</h3>
         <p>Obtenção do Número de Identificação Fiscal e Número de Identificação da Segurança Social para cidadãos estrangeiros.</p>
-        <div class="tags"><span class="tag">Finanças</span><span class="tag">Segurança Social</span><span class="tag">€ 80</span></div>
+        <div class="tags"><span class="tag">Finanças</span><span class="tag">Segurança Social</span></div>
         <a href="servicos.html" class="link-servico">Saber mais sobre NIF e NISS →</a>
       </div>
       <div class="card-servico">
         <div class="icone">👨‍👩‍👧</div>
         <h3>Reagrupamento Familiar</h3>
         <p>Processo completo junto da AIMA para reunir a sua família em Portugal: cônjuge, filhos e pais. Prazo legal até 9 meses.</p>
-        <div class="tags"><span class="tag">Cônjuge</span><span class="tag">Filhos</span><span class="tag">Lei 61/2025</span><span class="tag">€ 1.000</span></div>
+        <div class="tags"><span class="tag">Cônjuge</span><span class="tag">Filhos</span><span class="tag">Lei 61/2025</span></div>
         <a href="servicos.html" class="link-servico">Saber mais sobre Reagrupamento →</a>
       </div>
       <div class="card-servico">
         <div class="icone">📋</div>
         <h3>Autorização de Residência</h3>
         <p>Acompanhamento no pedido de Autorização de Residência junto da AIMA, da submissão à decisão final.</p>
-        <div class="tags"><span class="tag">AIMA</span><span class="tag">Residência</span><span class="tag">€ 1.000</span></div>
+        <div class="tags"><span class="tag">AIMA</span><span class="tag">Residência</span></div>
         <a href="servicos.html" class="link-servico">Saber mais →</a>
       </div>
       <div class="card-servico">
         <div class="icone">⚖️</div>
         <h3>Recurso NAV</h3>
         <p>Contestação de Notificação de Abandono Voluntário por via administrativa e judicial nos Tribunais Administrativos.</p>
-        <div class="tags"><span class="tag">Recurso Admin.</span><span class="tag">Ação Judicial</span><span class="tag">€ 1.400</span></div>
+        <div class="tags"><span class="tag">Recurso Admin.</span><span class="tag">Ação Judicial</span></div>
         <a href="servicos.html" class="link-servico">Saber mais sobre NAV →</a>
       </div>
       <div class="card-servico">
         <div class="icone">🏥</div>
         <h3>Utente SNS e Documentos</h3>
         <p>Inscrição no Serviço Nacional de Saúde, declarações de alojamento, certificação de passaporte e reconhecimento de assinatura.</p>
-        <div class="tags"><span class="tag">SNS</span><span class="tag">Documentos</span><span class="tag">A partir de € 15</span></div>
+        <div class="tags"><span class="tag">SNS</span><span class="tag">Documentos</span></div>
         <a href="servicos.html" class="link-servico">Ver todos os documentos →</a>
       </div>
       <div class="card-servico">
         <div class="icone">🔄</div>
         <h3>Processo Parado na AIMA</h3>
         <p>Contestação de silêncio administrativo quando o processo ultrapassa o prazo legal de 90 dias sem resposta da AIMA.</p>
-        <div class="tags"><span class="tag">+90 dias</span><span class="tag">Recurso Hierárquico</span><span class="tag">€ 400</span></div>
+        <div class="tags"><span class="tag">+90 dias</span><span class="tag">Recurso Hierárquico</span></div>
         <a href="servicos.html" class="link-servico">Saber mais →</a>
       </div>
     </div>
@@ -1010,7 +1084,7 @@ footer {
 </section>
 
 <!-- EQUIPA -->
-<section class="secao">
+<section class="secao" id="equipa">
   <div class="secao-inner">
     <div class="secao-topo">
       <div>
@@ -1020,12 +1094,12 @@ footer {
     </div>
     <div class="grid-equipa">
       <div class="card-pessoa">
-        <div class="foto"><div class="iniciais">MA</div></div>
+        <div class="foto"><img src="img/marcio%20andrio.png" alt="Marcio Andrio"></div>
         <div class="info">
           <h3>Marcio Andrio</h3>
           <div class="cargo">Sócio Fundador · Advogado</div>
-          <div class="ordem">Inscrito na OA n.º [XXXX] · OAB/AM [XXXX]</div>
-          <p>Especialista em direito de estrangeiros e imigração em Portugal. Mais de 8 anos de experiência em processos junto da AIMA, SEF e Tribunais Administrativos.</p>
+          <div class="ordem">Inscrito na OA n.º 68721P · OAB/AM 17.196</div>
+          <p>Especialista em direito de estrangeiros e imigração em Portugal, com experiência em processos junto da AIMA, SEF e Tribunais Administrativos.</p>
           <div class="linguas">
             <span class="lingua-tag">🇵🇹 Português</span>
             <span class="lingua-tag">🇬🇧 Inglês</span>
@@ -1034,7 +1108,7 @@ footer {
         </div>
       </div>
       <div class="card-pessoa">
-        <div class="foto"><div class="iniciais">HP</div></div>
+        <div class="foto"><img src="img/helen%20parwani.jpg" alt="Helen Parwani"></div>
         <div class="info">
           <h3>Helen Parwani</h3>
           <div class="cargo">Gestora de Processos</div>
@@ -1174,8 +1248,8 @@ footer {
       <h4>MA Advocacia</h4>
       <p>Escritório especializado em direito de imigração, com sede em Lisboa. Apoio a cidadãos estrangeiros em todas as fases do processo de regularização em Portugal.</p>
       <div class="footer-ordem">
-        Marcio Andrio · Inscrito na Ordem dos Advogados Portugueses n.º [XXXX]<br>
-        OAB/AM n.º [XXXX]
+        Marcio Andrio · Inscrito na Ordem dos Advogados Portugueses n.º 68721P<br>
+        OAB/AM n.º 17.196
       </div>
     </div>
     <div class="footer-col">
@@ -1185,7 +1259,6 @@ footer {
       <a href="#">Autorização de Residência</a>
       <a href="#">Recurso NAV</a>
       <a href="#">Processo parado na AIMA</a>
-      <a href="#">Tabela de Honorários</a>
     </div>
     <div class="footer-col">
       <h4>Links Úteis</h4>
