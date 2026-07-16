@@ -1,0 +1,98 @@
+{
+  "numero_processo": "12710/26.8BELSB",
+  "cliente": "Ana Lucia Silva dos Santos",
+  "tipo_acao": "Intimação para Proteção de Direitos, Liberdades e Garantias (Agendamento AIMA)",
+  "data_analise": "15/07/2026",
+  "informacoes_basicas": {
+    "autor": "Ana Lucia Silva dos Santos (Passaporte GI874534, nascida 12/08/1976)",
+    "reu": "Agência para a Integração, Migrações e Asilo, I.P. (AIMA)",
+    "vara": "Tribunal Administrativo de Círculo de Lisboa — Juízo Administrativo Comum",
+    "valor_da_causa": "€ 30.000,01 (ação isenta de custas — art. 4º, nº 2, al. b) do RCP)",
+    "fase_atual": "Conhecimento — processo urgente (intimação para proteção de DLG, art. 109º e ss. CPTA), aguardando decisão do tribunal após resposta da entidade requerida."
+  },
+  "linha_do_tempo": [
+    {
+      "data": "20/03/2026",
+      "movimentacao": "Protocolo da Petição Inicial (REFª 55601438)",
+      "resumo": "Intimação para a proteção de direitos, liberdades e garantias (art. 109º CPTA), pedindo que a AIMA seja intimada a marcar agendamento presencial para entrega de documentos e dados biométricos, e a decidir o pedido de renovação da Autorização de Residência com caráter de urgência. Fundamento: a requerente perdeu o acesso ao portal da AIMA e ao e-mail associado, ficando impedida de prosseguir com a renovação online.",
+      "documentos_juntados": "Procuração forense; Título de Residência; Passaporte.",
+      "prazos": "—"
+    },
+    {
+      "data": "30/03/2026",
+      "movimentacao": "Despacho de admissão liminar e citação da AIMA",
+      "resumo": "\"Admito liminarmente a petição inicial de intimação para proteção de direitos, liberdades e garantias. (...) Cite a Entidade Requerida para, querendo, responder, no prazo de 7 (sete) dias (...). Notifique a mesma entidade para, em igual prazo, juntar aos autos o correspondente processo administrativo, devidamente paginado e ordenado.\" — Juíza de Direito Maria João Ribeiro.",
+      "documentos_juntados": "—",
+      "prazos": "7 dias para a AIMA responder e para juntar o processo administrativo (a contar da citação, cuja data efetiva não consta dos documentos analisados)."
+    },
+    {
+      "data": "17/04/2026",
+      "movimentacao": "Despacho designativo do representante da AIMA",
+      "resumo": "Diretora do Departamento Jurídico da AIMA, Helena Santos, nomeia Madalena Maria Valente Brandão dos Santos para representar a AIMA no processo, podendo deduzir oposição e produzir alegações.",
+      "documentos_juntados": "—",
+      "prazos": "—"
+    },
+    {
+      "data": "17/04/2026",
+      "movimentacao": "Resposta/comunicação da AIMA (REFª 55937469)",
+      "resumo": "A AIMA, pela Jurista Madalena Brandão, comunica \"ao abrigo do dever de cooperação\" (art. 8º CPTA) que reconhece os constrangimentos de disponibilidade de agendamentos e informa da existência de um formulário de contacto online (contactenos.aima.gov.pt) para casos como o da requerente, incluindo \"Portal das Renovações\". Não deduz oposição de mérito nem contesta os factos alegados.",
+      "documentos_juntados": "Despacho designativo do representante da AIMA.",
+      "prazos": "—"
+    }
+  ],
+  "novas_movimentacoes": [
+    "Esta é a primeira análise desta pasta — não existe `movimentos.md` anterior para comparação. Todas as 4 movimentações acima são \"novas\" nesta primeira versão."
+  ],
+  "prazos": {
+    "urgente": [
+      "(nenhum identificado)"
+    ],
+    "atencao": [
+      "(nenhum identificado)"
+    ],
+    "monitorar": [
+      "Não há prazo processual em curso identificável para a parte requerente neste momento — o processo aguarda decisão do tribunal. No entanto, já decorreram quase 3 meses desde a resposta da AIMA (17/04/2026) sem qualquer decisão documentada, o que é significativo tratando-se de processo urgente (intimação para proteção de DLG). Padrão semelhante já foi identificado noutros processos da mesma natureza no escritório (ex.: proc. 10038/26.2BELSB, parado há ~3,5 meses). Recomenda-se verificar o andamento atualizado no Citius/SITAF.",
+      "⚠️ Data de início da contagem de um eventual prazo de decisão não identificada nos documentos — não é possível calcular um prazo fatal com segurança. Necessária conferência manual no Citius/SITAF."
+    ]
+  },
+  "proximas_acoes": [
+    "Verificar o andamento processual atualizado no Citius/SITAF — a última movimentação documentada nesta pasta é de 17/04/2026.",
+    "Avaliar a apresentação de requerimento de impulso processual / pedido de celeridade, dado tratar-se de processo urgente sem decisão há quase 3 meses.",
+    "Verificar se a AIMA efetivamente juntou o processo administrativo ordenado no despacho de 30/03/2026; caso não tenha juntado, avaliar requerer o cumprimento dessa determinação.",
+    "Confirmar junto do Citius/SITAF a data e hora exatas do protocolo da petição inicial e da citação da AIMA, para registo preciso dos prazos.",
+    "Informar a cliente sobre o estado atual do processo (aguardando decisão judicial)."
+  ],
+  "evolucao": [
+    {
+      "data": "20/03/2026",
+      "evento": "Protocolo da Petição Inicial (intimação DLG contra a AIMA)",
+      "fase": "Conhecimento",
+      "impacto": "Início da ação urgente"
+    },
+    {
+      "data": "30/03/2026",
+      "evento": "Despacho de admissão liminar; citação da AIMA (7 dias)",
+      "fase": "Conhecimento",
+      "impacto": "Processo formalmente instaurado; AIMA citada"
+    },
+    {
+      "data": "17/04/2026",
+      "evento": "Despacho designativo do representante da AIMA",
+      "fase": "Conhecimento",
+      "impacto": "AIMA constitui representação processual"
+    },
+    {
+      "data": "17/04/2026",
+      "evento": "Resposta da AIMA — informa sobre formulário online, sem contestar o mérito",
+      "fase": "Conhecimento",
+      "impacto": "Ainda sem decisão sobre o pedido de agendamento/renovação"
+    }
+  ],
+  "observacoes": [
+    "⚠️ Data exata do protocolo da petição inicial (20/03/2026) inferida da data de criação do ficheiro de comprovativo eletrónico — não consta explicitamente do texto do documento. Confirmar no Citius/SITAF antes de qualquer comunicação formal que dependa dessa data.",
+    "⚠️ Não há confirmação de que a AIMA tenha junto o processo administrativo ordenado no despacho de 30/03/2026.",
+    "Padrão recorrente: este processo segue o mesmo perfil de outras intimações DLG contra a AIMA já identificadas no painel do escritório (resposta genérica da AIMA sem solução concreta, seguida de longo período sem decisão).",
+    ""
+  ],
+  "atualizado_em": "15/07/2026 às — (hora não registada pelo sistema)"
+}

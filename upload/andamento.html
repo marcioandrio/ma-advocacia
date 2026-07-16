@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulta de Andamento Processual</title>
+    <style>
+      :root {
+        --navy: #0f2942;
+        --navy-light: #1b3f61;
+        --gold: #b08d47;
+        --bg: #f4f5f7;
+        --card: #ffffff;
+        --text: #22292f;
+        --muted: #6b7280;
+        --red: #c0392b;
+        --orange: #d97706;
+        --yellow: #a58a00;
+        --border: #e3e6ea;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      header {
+        background: var(--navy);
+        color: #fff;
+        padding: 28px 20px;
+        text-align: center;
+        position: relative;
+      }
+      .voltar {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #c9d3dc;
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 600;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+      }
+      .voltar:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        border-color: var(--gold);
+      }
+      @media (max-width: 560px) {
+        header {
+          padding: 20px 16px;
+        }
+        .voltar {
+          position: static;
+          transform: none;
+          margin-bottom: 14px;
+        }
+      }
+      header h1 {
+        margin: 0 0 4px;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+      header p {
+        margin: 0;
+        color: #c9d3dc;
+        font-size: 14px;
+      }
+      main {
+        max-width: 720px;
+        margin: -20px auto 60px;
+        padding: 0 16px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 24px;
+        margin-top: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .form-card label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 6px;
+      }
+      .form-card input {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 16px;
+      }
+      .form-card input:focus {
+        outline: 2px solid var(--gold);
+        border-color: var(--gold);
+      }
+      button {
+        width: 100%;
+        background: var(--navy);
+        color: #fff;
+        border: none;
+        padding: 13px;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        background: var(--navy-light);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .msg {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+        display: none;
+      }
+      .msg.erro {
+        background: #fdecea;
+        color: var(--red);
+        display: block;
+      }
+      .msg.info {
+        background: #eef2f7;
+        color: var(--navy);
+        display: block;
+      }
+
+      #resultado {
+        display: none;
+      }
+      .resumo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .resumo-header h2 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--navy);
+      }
+      .badge-fase {
+        background: var(--navy);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+      .fase-explicacao {
+        margin-top: 10px;
+        color: var(--text);
+        font-size: 14.5px;
+      }
+      .meta {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        padding-top: 12px;
+      }
+      .meta div {
+        margin-bottom: 3px;
+      }
+
+      h3.section-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--gold);
+        margin: 0 0 14px;
+      }
+
+      .prazo-grupo {
+        margin-bottom: 14px;
+      }
+      .prazo-grupo:last-child {
+        margin-bottom: 0;
+      }
+      .prazo-titulo {
+        font-weight: 600;
+        font-size: 13.5px;
+        margin-bottom: 6px;
+      }
+      .prazo-titulo.urgente {
+        color: var(--red);
+      }
+      .prazo-titulo.atencao {
+        color: var(--orange);
+      }
+      .prazo-titulo.monitorar {
+        color: var(--yellow);
+      }
+      .prazo-lista {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 14px;
+      }
+      .prazo-lista li {
+        margin-bottom: 4px;
+      }
+      .sem-prazos {
+        color: var(--muted);
+        font-size: 13.5px;
+        font-style: italic;
+      }
+
+      .timeline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .timeline li {
+        position: relative;
+        padding: 0 0 20px 22px;
+        border-left: 2px solid var(--border);
+      }
+      .timeline li:last-child {
+        border-left-color: transparent;
+        padding-bottom: 0;
+      }
+      .timeline li::before {
+        content: "";
+        position: absolute;
+        left: -6px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+      .timeline .data {
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--navy);
+      }
+      .timeline .mov {
+        font-size: 14.5px;
+        margin-top: 2px;
+      }
+      .timeline .resumo {
+        font-size: 13.5px;
+        color: var(--muted);
+        margin-top: 4px;
+        font-style: italic;
+      }
+
+      ul.simples {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 14px;
+      }
+      ul.simples li {
+        margin-bottom: 6px;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 12.5px;
+        color: var(--muted);
+        padding: 20px;
+      }
+      .aviso {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 16px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="../index.html" class="voltar">&larr; Página principal</a>
+      <h1>Consulta de Andamento Processual</h1>
+      <p>Escritório Dr. Marcio Andrio</p>
+    </header>
+
+    <main>
+      <div class="card" id="resultado">
+        <div class="resumo-header">
+          <h2 id="r-tipo"></h2>
+          <span class="badge-fase" id="r-fase-badge"></span>
+        </div>
+        <div class="fase-explicacao" id="r-fase-texto"></div>
+        <div class="meta">
+          <div id="r-numero"></div>
+          <div id="r-autor-reu"></div>
+          <div id="r-vara"></div>
+        </div>
+      </div>
+      <div class="card form-card">
+        <label for="nomeCompleto">Seu nome completo</label>
+        <input type="text" id="nomeCompleto" placeholder="ex.: João Pereira da Silva" autocomplete="off" />
+
+        <label for="numero">Número do processo</label>
+        <input type="text" id="numero" placeholder="ex.: 1234567-89.2024.8.26.0100" autocomplete="off" />
+
+        <button id="btnConsultar">Consultar</button>
+        <div class="msg" id="msg"></div>
+        <p class="aviso">
+          Os dados apresentados aqui são um resumo informativo do andamento processual e não substituem a análise do
+          advogado responsável. Em caso de dúvida, contacte diretamente o escritório.
+        </p>
+      </div>
+
+      <div class="card" id="card-prazos" style="display: none">
+        <h3 class="section-title">Prazos e Diligências</h3>
+        <div id="r-prazos"></div>
+      </div>
+
+      <div class="card" id="card-timeline" style="display: none">
+        <h3 class="section-title">Linha do Tempo</h3>
+        <ul class="timeline" id="r-timeline"></ul>
+      </div>
+
+      <div class="card" id="card-proximas" style="display: none">
+        <h3 class="section-title">Próximas Ações</h3>
+        <ul class="simples" id="r-proximas"></ul>
+      </div>
+
+      <div class="card" id="card-atualizado" style="display: none">
+        <div class="meta" id="r-atualizado" style="border-top: none; padding-top: 0"></div>
+      </div>
+    </main>
+
+    <footer>Portal de consulta &mdash; os dados são atualizados periodicamente pela equipa do escritório.</footer>
+
+    <script>
+      const PASTA_DADOS = "processos/"; // pasta com os .json, no mesmo site
+
+      async function sha256Hex(texto) {
+        const buf = new TextEncoder().encode(texto);
+        const hashBuf = await crypto.subtle.digest("SHA-256", buf);
+        return Array.from(new Uint8Array(hashBuf))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      function normalizarNumero(numero) {
+        return (numero || "").replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+      }
+
+      function normalizarTexto(t) {
+        return (t || "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim();
+      }
+
+      function mostrarMsg(texto, tipo) {
+        const el = document.getElementById("msg");
+        el.textContent = texto;
+        el.className = "msg " + tipo;
+      }
+
+      function limparMsg() {
+        const el = document.getElementById("msg");
+        el.textContent = "";
+        el.className = "msg";
+      }
+
+      function esconderResultado() {
+        ["resultado", "card-prazos", "card-timeline", "card-proximas", "card-atualizado"].forEach((id) => {
+          document.getElementById(id).style.display = "none";
+        });
+      }
+
+      function renderPrazos(prazos) {
+        const cont = document.getElementById("r-prazos");
+        cont.innerHTML = "";
+        const grupos = [
+          { chave: "urgente", classe: "urgente", label: "🔴 Urgente" },
+          { chave: "atencao", classe: "atencao", label: "🟠 Atenção" },
+          { chave: "monitorar", classe: "monitorar", label: "🟡 Monitorar" },
+        ];
+        let algum = false;
+        grupos.forEach((g) => {
+          const lista = (prazos && prazos[g.chave]) || [];
+          if (!lista.length) return;
+          algum = true;
+          const div = document.createElement("div");
+          div.className = "prazo-grupo";
+          div.innerHTML = `<div class="prazo-titulo ${g.classe}">${g.label}</div>
+      <ul class="prazo-lista">${lista.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`;
+          cont.appendChild(div);
+        });
+        if (!algum) {
+          cont.innerHTML = '<p class="sem-prazos">Sem prazos pendentes no momento.</p>';
+        }
+        document.getElementById("card-prazos").style.display = "block";
+      }
+
+      function renderTimeline(eventos) {
+        const ul = document.getElementById("r-timeline");
+        ul.innerHTML = "";
+        if (!eventos || !eventos.length) {
+          document.getElementById("card-timeline").style.display = "none";
+          return;
+        }
+        eventos.forEach((ev) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<div class="data">${escapeHtml(ev.data)}</div>
+      <div class="mov">${escapeHtml(ev.movimentacao)}</div>
+      ${ev.resumo ? `<div class="resumo">${escapeHtml(ev.resumo)}</div>` : ""}`;
+          ul.appendChild(li);
+        });
+        document.getElementById("card-timeline").style.display = "block";
+      }
+
+      function renderProximas(lista) {
+        const ul = document.getElementById("r-proximas");
+        ul.innerHTML = "";
+        if (!lista || !lista.length) {
+          document.getElementById("card-proximas").style.display = "none";
+          return;
+        }
+        lista.forEach((i) => {
+          const li = document.createElement("li");
+          li.textContent = i;
+          ul.appendChild(li);
+        });
+        document.getElementById("card-proximas").style.display = "block";
+      }
+
+      function escapeHtml(s) {
+        const d = document.createElement("div");
+        d.textContent = s == null ? "" : String(s);
+        return d.innerHTML;
+      }
+
+      async function consultar() {
+        limparMsg();
+        esconderResultado();
+
+        const numero = document.getElementById("numero").value.trim();
+        const nomeCompleto = document.getElementById("nomeCompleto").value.trim();
+
+        if (!numero || !nomeCompleto) {
+          mostrarMsg("Preencha o número do processo e o seu nome completo.", "erro");
+          return;
+        }
+
+        const btn = document.getElementById("btnConsultar");
+        btn.disabled = true;
+        btn.textContent = "A consultar...";
+
+        try {
+          const hash = await sha256Hex(normalizarNumero(numero));
+          const resp = await fetch(PASTA_DADOS + hash + ".json", { cache: "no-store" });
+
+          if (!resp.ok) {
+            mostrarMsg(
+              "Processo não encontrado ou dados não conferem. Verifique o número e o nome completo, ou contacte o escritório.",
+              "erro",
+            );
+            return;
+          }
+
+          const dados = await resp.json();
+
+          const nomeCliente = normalizarTexto(dados.cliente || "");
+          if (normalizarTexto(nomeCompleto) !== nomeCliente) {
+            mostrarMsg(
+              "Processo não encontrado ou dados não conferem. Verifique o número e o nome completo, ou contacte o escritório.",
+              "erro",
+            );
+            return;
+          }
+
+          preencherResultado(dados);
+        } catch (e) {
+          mostrarMsg("Não foi possível consultar o processo agora. Tente novamente em instantes.", "erro");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Consultar";
+        }
+      }
+
+      function preencherResultado(d) {
+        document.getElementById("r-tipo").textContent = d.tipo_acao || "Processo";
+
+        // "Fase Atual" no movimentos.md aparece em formatos diferentes conforme o caso, ex.:
+        //   "**Conhecimento.** Em linguagem simples: o processo já foi admitido..."
+        //   "Cumprimento de Sentença — O processo encontra-se atualmente na fase..."
+        // Tentamos separar a classificação curta (selo) da explicação (texto corrido).
+        const faseCompleta = (d.informacoes_basicas && d.informacoes_basicas.fase_atual) || "—";
+        let faseCurta = "Fase atual",
+          faseExplicacao = faseCompleta;
+        const negrito = faseCompleta.match(/^\*\*(.+?)\*\*\.?\s*(.*)$/s);
+        const travessao = faseCompleta.match(/\s[—-]\s/);
+        if (negrito) {
+          faseCurta = negrito[1].replace(/\.$/, "").trim();
+          faseExplicacao = negrito[2].trim();
+        } else if (travessao) {
+          const idx = faseCompleta.indexOf(travessao[0]);
+          faseCurta = faseCompleta.slice(0, idx).trim();
+          faseExplicacao = faseCompleta.slice(idx + travessao[0].length).trim();
+        }
+        document.getElementById("r-fase-badge").textContent = faseCurta;
+        document.getElementById("r-fase-texto").textContent = faseExplicacao.replace(/\*\*/g, "");
+        document.getElementById("r-numero").textContent = "Processo nº " + (d.numero_processo || "—");
+
+        const ib = d.informacoes_basicas || {};
+        const autorReu = [ib.autor ? "Autor: " + ib.autor : "", ib.reu ? "Réu: " + ib.reu : ""]
+          .filter(Boolean)
+          .join(" · ");
+        document.getElementById("r-autor-reu").textContent = autorReu;
+        document.getElementById("r-vara").textContent = ib.vara ? "Vara: " + ib.vara : "";
+
+        renderPrazos(d.prazos);
+        renderTimeline(d.linha_do_tempo);
+        renderProximas(d.proximas_acoes);
+
+        if (d.atualizado_em) {
+          document.getElementById("r-atualizado").textContent = "Última atualização: " + d.atualizado_em;
+          document.getElementById("card-atualizado").style.display = "block";
+        }
+
+        document.getElementById("resultado").style.display = "block";
+      }
+
+      document.getElementById("btnConsultar").addEventListener("click", consultar);
+      document.getElementById("nomeCompleto").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") consultar();
+      });
+
+      // Preenche o número automaticamente se vier por link (?numero=...), mas nunca dispensa o nome completo.
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("numero")) {
+        document.getElementById("numero").value = params.get("numero");
+        document.getElementById("nomeCompleto").focus();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "numero_processo": "26418/26.0BELSB",
+  "cliente": "Adama Aua Baldé",
+  "tipo_acao": "Intimação para Proteção de Direitos, Liberdades e Garantias (Art. 122º, n.º 1, al. k), Lei 23/2007 — pedido de agendamento AIMA)",
+  "data_analise": "15/07/2026",
+  "informacoes_basicas": {
+    "autor": "Adama Aua Baldé (Requerente); Iaia Juldé Baldé (interveniente principal, filho menor, nacionalidade portuguesa)",
+    "reu": "Agência para a Integração, Migrações e Asilo, I.P. (AIMA)",
+    "vara": "Tribunal Administrativo de Círculo de Lisboa — Juízo Administrativo Comum",
+    "valor_da_causa": "€ 30.000,01 (trinta mil euros e um cêntimo)",
+    "fase_atual": "**Conhecimento.** Em linguagem simples: o processo já foi admitido pelo tribunal, a AIMA foi citada e já respondeu, comprometendo-se a agendar o atendimento do cliente. A AIMA já enviou, de facto, uma notificação de agendamento — mas para uma data muito distante (05/01/2027). O processo continua em aberto no tribunal, aguardando decisão final sobre o pedido de autorização de residência, que ainda não foi decidido."
+  },
+  "linha_do_tempo": [
+    {
+      "data": "04/06/2026",
+      "movimentacao": "Petição inicial apresentada (Ref.ª 56556983)",
+      "resumo": "Intimação para proteção de direitos, liberdades e garantias (art. 109º CPTA), pedindo que a AIMA seja obrigada a agendar o atendimento da Requerente e a decidir o pedido de Autorização de Residência com dispensa de visto (art. 122º, n.º 1, al. k, da Lei n.º 23/2007), por ser mãe de criança portuguesa e estar impossibilitada de conseguir agendamento junto da AIMA.",
+      "documentos_juntados": "Procuração forense; Passaporte; NIF; NISS; Comprovativo de morada; Certidão de nascimento do filho; Cartão de Cidadão; Comprovativo de chamadas realizadas.",
+      "prazos": "—"
+    },
+    {
+      "data": "08/06/2026",
+      "movimentacao": "Despacho judicial de admissão liminar e determinação de citação",
+      "resumo": "A Juíza Tânia José Lemos admite liminarmente a petição inicial e determina a citação da AIMA para responder no prazo de 7 dias (art. 110º, n.º 1, CPTA), devendo ainda remeter, no mesmo prazo, o processo instrutor devidamente ordenado, paginado e em formato digital.",
+      "documentos_juntados": "Despacho assinado eletronicamente.",
+      "prazos": "7 dias para a AIMA responder, a contar da citação (prazo já decorrido — cumprido pela Requerida, ver 20/06/2026)."
+    },
+    {
+      "data": "20/06/2026",
+      "movimentacao": "Despacho de designação de representante da AIMA",
+      "resumo": "A Diretora do Departamento Jurídico da AIMA, Helena Santos, nomeia Maria Encarnação Marques Palma (NIF 190919310) como representante da AIMA no processo, com poderes para deduzir oposição e exercer os demais poderes processuais.",
+      "documentos_juntados": "—",
+      "prazos": "—"
+    },
+    {
+      "data": "20/06/2026",
+      "movimentacao": "Requerimento / Resposta da AIMA (Ref.ª 56734563)",
+      "resumo": "A AIMA, através da sua representante, informa que \"irá diligenciar no sentido de atribuir o agendamento solicitado\" e esclarece que, por a Requerente ainda não ter comparecido numa Loja AIMA, o procedimento administrativo ainda não foi iniciado, pelo que a AIMA não possui processo administrativo instaurado para o efeito.",
+      "documentos_juntados": "Despacho designativo (anexo).",
+      "prazos": "⚠️ Não identificado nos documentos disponíveis nenhum prazo expresso para reação da parte Requerente a este requerimento — necessária conferência direta no SITAF/Citius."
+    },
+    {
+      "data": "22/06/2026",
+      "movimentacao": "Notificação de Agendamento (email da AIMA)",
+      "resumo": "A AIMA agenda o comparecimento da Requerente na Loja do Cidadão de Faro – AIMA (Largo Dr. Francisco Sá Carneiro, Faro) para o dia **5 de janeiro de 2027, às 10:00**, para entrega de documentos, recolha de foto e dados biométricos.",
+      "documentos_juntados": "—",
+      "prazos": "⚠️ Sem prazo processual expresso associado. Atenção: a data agendada está cerca de 6,5 meses após a notificação — ver risco assinalado abaixo."
+    }
+  ],
+  "novas_movimentacoes": [
+    "Esta é a primeira análise da pasta — todas as movimentações acima (04/06 a 22/06/2026) são novas em relação a este ficheiro."
+  ],
+  "prazos": {
+    "urgente": [
+      "Nenhum prazo urgente identificado nos documentos disponíveis."
+    ],
+    "atencao": [
+      "Nenhum prazo nesta faixa identificado nos documentos disponíveis."
+    ],
+    "monitorar": [
+      "Agendamento AIMA marcado para **05/01/2027** — acompanhar se o compromisso é cumprido e avaliar se compensa reagir processualmente para antecipar a data, dado que a ação original se funda em urgência.",
+      "⚠️ Data de início de contagem não identificada para eventual prazo de reação ao Requerimento da AIMA de 20/06/2026. Necessária conferência manual (consulta direta ao processo no SITAF/Citius) para confirmar se há prazo em curso."
+    ]
+  },
+  "proximas_acoes": [
+    "Avaliar se o agendamento oferecido pela AIMA (05/01/2027) cumpre a finalidade urgente da intimação; caso contrário, considerar requerer ao tribunal decisão que imponha a antecipação da data ou decisão de mérito quanto à autorização de residência.",
+    "Consultar o processo diretamente no SITAF/Citius para confirmar se existe prazo em curso ou decisão pendente não capturada nos documentos desta pasta.",
+    "Contactar a cliente para informar do agendamento de 05/01/2027 e organizar antecipadamente a documentação necessária para o comparecimento na Loja AIMA de Faro.",
+    "Requerer ao tribunal pronúncia sobre o pedido de decisão de mérito da autorização de residência (art. 122º, n.º 1, al. k), já que a resposta da AIMA tratou apenas do agendamento, não da concessão da autorização em si."
+  ],
+  "evolucao": [
+    {
+      "data": "04/06/2026",
+      "evento": "Petição inicial apresentada (Intimação DLG, Ref.ª 56556983)",
+      "fase": "Conhecimento",
+      "impacto": "Início do processo n.º 26418/26.0BELSB"
+    },
+    {
+      "data": "08/06/2026",
+      "evento": "Admissão liminar e determinação de citação da AIMA",
+      "fase": "Conhecimento",
+      "impacto": "AIMA citada para responder em 7 dias"
+    },
+    {
+      "data": "20/06/2026",
+      "evento": "Designação de representante + Resposta/Requerimento da AIMA",
+      "fase": "Conhecimento",
+      "impacto": "AIMA compromete-se a diligenciar o agendamento solicitado"
+    },
+    {
+      "data": "22/06/2026",
+      "evento": "Notificação de Agendamento — marcado para 05/01/2027",
+      "fase": "Conhecimento",
+      "impacto": "Cumprimento parcial do pedido; data muito distante da citação"
+    }
+  ],
+  "observacoes": [
+    "⚠️ Nenhum documento na pasta mostra decisão final (sentença) do tribunal quanto ao mérito da intimação — o processo está apenas na fase de citação/resposta, sem decisão de mérito registada.",
+    "⚠️ Não foi possível confirmar, apenas com os documentos disponíveis, se existe algum prazo processual em curso após a resposta da AIMA (20/06/2026). Recomenda-se conferência direta no SITAF.",
+    "O agendamento oferecido pela AIMA para 05/01/2027 é um ponto de atenção estratégico: pode ser visto como cumprimento formal do pedido de agendamento, mas a distância temporal (quase 7 meses após a notificação) pode ser incompatível com o fundamento de urgência que sustentou a intimação. Vale avaliar se compensa reagir processualmente para antecipar a data ou obter decisão de mérito quanto à autorização de residência.",
+    ""
+  ],
+  "atualizado_em": "15/07/2026 às 23:15"
+}

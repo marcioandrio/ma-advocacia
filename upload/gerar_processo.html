@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerar JSON de Processo — Painel Interno</title>
+<style>
+  :root {
+    --navy: #0f2942;
+    --navy-light: #1b3f61;
+    --gold: #b08d47;
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --text: #22292f;
+    --muted: #6b7280;
+    --green: #1e7e34;
+    --red: #c0392b;
+    --border: #e3e6ea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 4px; font-size: 20px; font-weight: 600; }
+  header p { margin: 0; color: #c9d3dc; font-size: 13px; }
+  .aviso-interno {
+    background: #fff4e0;
+    color: #7a5200;
+    text-align: center;
+    font-size: 12.5px;
+    padding: 8px 16px;
+  }
+  main { max-width: 640px; margin: 24px auto 60px; padding: 0 16px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .drop-zone.arrastando { border-color: var(--gold); background: #fbf7ee; }
+  .drop-zone strong { color: var(--navy); }
+  .drop-zone input { display: none; }
+  .arquivo-nome {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 600;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 18px 0 6px;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  input[type="text"]:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+  button {
+    width: 100%;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  button:hover { background: var(--navy-light); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .msg { margin-top: 14px; padding: 12px 14px; border-radius: 6px; font-size: 13.5px; display: none; }
+  .msg.erro { background: #fdecea; color: var(--red); display: block; }
+  .msg.aviso { background: #fff4e0; color: #7a5200; display: block; }
+  .msg.divergencia { background: #fdecea; color: var(--red); display: block; font-weight: 600; line-height: 1.5; }
+
+  .nomes-detectados {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--muted);
+    display: none;
+  }
+  .nomes-detectados strong { color: var(--navy); }
+  .nomes-detectados .nome-item {
+    display: inline-block;
+    background: #eef2f7;
+    color: var(--navy);
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin: 3px 4px 0 0;
+    cursor: pointer;
+  }
+  .nomes-detectados .nome-item:hover { background: #dfe7f0; }
+
+  #resultado { display: none; }
+  #resultado h2 { margin: 0 0 12px; font-size: 16px; color: var(--navy); }
+  .linha { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .linha:last-child { border-bottom: none; }
+  .linha .rotulo { color: var(--muted); }
+  .linha .valor { font-weight: 600; text-align: right; word-break: break-word; }
+
+  .btn-baixar {
+    display: block;
+    text-align: center;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 18px;
+  }
+  .btn-baixar:hover { opacity: 0.9; }
+
+  .instrucoes {
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: var(--muted);
+    background: #f7f8fa;
+    border-radius: 8px;
+    padding: 12px 14px;
+    line-height: 1.5;
+  }
+  .link-cliente {
+    margin-top: 14px;
+    font-size: 13px;
+    background: #eef2f7;
+    border-radius: 6px;
+    padding: 10px 12px;
+    word-break: break-all;
+    color: var(--navy);
+  }
+  .copiar {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--gold);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Gerar JSON de Processo</h1>
+  <p>Painel interno — converte movimentos.md em JSON para o portal do cliente</p>
+</header>
+<div class="aviso-interno">⚠️ Ferramenta de uso interno do escritório. Não publicar este arquivo no site.</div>
+
+<main>
+  <div class="card">
+    <div class="drop-zone" id="dropZone">
+      <div>📄 Arraste o <strong>movimentos.md</strong> aqui, ou clique para escolher o arquivo</div>
+      <div class="arquivo-nome" id="arquivoNome"></div>
+      <input type="file" id="fileInput" accept=".md,text/markdown,text/plain">
+    </div>
+
+    <label for="cliente">Nome completo do cliente (exatamente como ele vai digitar na conferência)</label>
+    <input type="text" id="cliente" placeholder="ex.: Adama Aua Baldé" autocomplete="off">
+    <div class="nomes-detectados" id="nomesDetectados"></div>
+
+    <button id="btnGerar" disabled>Gerar JSON</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="card" id="resultado">
+    <h2>✅ JSON gerado</h2>
+    <div class="linha"><span class="rotulo">Número do processo</span><span class="valor" id="r-numero"></span></div>
+    <div class="linha"><span class="rotulo">Cliente</span><span class="valor" id="r-cliente"></span></div>
+    <div class="linha"><span class="rotulo">Tipo de ação</span><span class="valor" id="r-tipo"></span></div>
+    <div class="linha"><span class="rotulo">Eventos na timeline</span><span class="valor" id="r-eventos"></span></div>
+    <div class="linha"><span class="rotulo">Nome do arquivo (hash)</span><span class="valor" id="r-hash"></span></div>
+
+    <a class="btn-baixar" id="btnBaixar" download>⬇️ Baixar &lt;hash&gt;.json</a>
+
+    <div class="instrucoes">
+      Depois de baixar, mova (ou salve diretamente, se o navegador perguntar onde salvar) o
+      arquivo para a pasta <strong>processos/</strong> dentro do site — a mesma pasta que o
+      <strong>andamento.html</strong> já lê. Se já existir um arquivo com este mesmo nome de
+      hash ali, é porque é o mesmo processo — pode substituir.
+      <br><br>
+      Dica: em <em>Chrome → Configurações → Downloads</em>, ative "Perguntar onde salvar cada
+      arquivo antes de fazer o download" — assim, ao clicar em "Baixar", você já navega direto
+      até a pasta <code>processos/</code> e salva com um clique, sem precisar mover depois.
+    </div>
+
+    <div class="link-cliente" id="r-link"></div>
+    <span class="copiar" id="btnCopiar">Copiar link para o cliente</span>
+  </div>
+</main>
+
+<script>
+let arquivoTexto = null;
+let arquivoNomeOriginal = null;
+
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const clienteInput = document.getElementById("cliente");
+const btnGerar = document.getElementById("btnGerar");
+
+dropZone.addEventListener("click", () => fileInput.click());
+dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("arrastando"); });
+dropZone.addEventListener("dragleave", () => dropZone.classList.remove("arrastando"));
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.classList.remove("arrastando");
+  if (e.dataTransfer.files.length) carregarArquivo(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length) carregarArquivo(fileInput.files[0]);
+});
+
+function carregarArquivo(file) {
+  arquivoNomeOriginal = file.name;
+  const reader = new FileReader();
+  reader.onload = () => {
+    arquivoTexto = reader.result;
+    document.getElementById("arquivoNome").textContent = "📎 " + file.name;
+    mostrarNomesDetectados(arquivoTexto);
+    atualizarBotao();
+  };
+  reader.readAsText(file, "UTF-8");
+}
+
+// Mostra, assim que o .md é carregado, os nomes que a skill extraiu como Autor/Réu —
+// clicar num deles já preenche o campo "Nome completo do cliente" certinho.
+function mostrarNomesDetectados(texto) {
+  const bloco = extrairSecao(texto, "Informações Básicas");
+  const info = extrairInfoBasicas(bloco);
+  const candidatos = [
+    ...extrairNomesCandidatos(info.autor).map(n => ({ nome: n, papel: "Autor" })),
+    ...extrairNomesCandidatos(info.reu).map(n => ({ nome: n, papel: "Réu" })),
+  ];
+  const container = document.getElementById("nomesDetectados");
+  if (!candidatos.length) {
+    container.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
+  container.innerHTML = "<strong>Nomes encontrados no documento</strong> (clique para preencher):<br>" +
+    candidatos.map(c => `<span class="nome-item" data-nome="${c.nome.replace(/"/g, "&quot;")}">${c.nome} — ${c.papel}</span>`).join("");
+  container.style.display = "block";
+  container.querySelectorAll(".nome-item").forEach(el => {
+    el.addEventListener("click", () => {
+      clienteInput.value = el.dataset.nome;
+      atualizarBotao();
+    });
+  });
+}
+
+clienteInput.addEventListener("input", atualizarBotao);
+function atualizarBotao() {
+  btnGerar.disabled = !(arquivoTexto && clienteInput.value.trim());
+}
+
+function limparMsg() {
+  const el = document.getElementById("msg");
+  el.textContent = "";
+  el.className = "msg";
+}
+function mostrarMsg(texto, tipo, comHtml) {
+  const el = document.getElementById("msg");
+  if (comHtml) { el.innerHTML = texto; } else { el.textContent = texto; }
+  el.className = "msg " + tipo;
+}
+
+function normalizarNumero(numero) {
+  return (numero || "").replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+}
+
+function normalizarTexto(t) {
+  return (t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+}
+
+// Extrai nomes "limpos" de um campo Autor/Réu que pode ter vários nomes separados por ";"
+// e texto extra entre parênteses (ex.: "Ana Lucia Silva dos Santos (Passaporte GI874534, ...)").
+function extrairNomesCandidatos(campo) {
+  if (!campo) return [];
+  return campo.split(";")
+    .map(seg => seg.split("(")[0].trim())
+    .filter(Boolean);
+}
+
+async function sha256Hex(texto) {
+  const buf = new TextEncoder().encode(texto);
+  const hashBuf = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// ---- Parser (espelha gerar_json_processo.py) ----
+
+function extrairSecao(texto, titulo) {
+  const padrao = new RegExp(`##\\s+${escapeRegExp(titulo)}\\s*\\n([\\s\\S]*?)(?=\\n##\\s+|$)`, "i");
+  const m = texto.match(padrao);
+  return m ? m[1].trim() : "";
+}
+
+function extrairCampoTopo(texto, rotulo) {
+  const padrao = new RegExp(`\\*\\*${escapeRegExp(rotulo)}:\\*\\*\\s*(.*)`);
+  const m = texto.match(padrao);
+  return m ? m[1].trim() : "";
+}
+
+function extrairTitulo(texto) {
+  const m = texto.match(/^#\s+Movimentações do Processo\s*-\s*(.+)$/m);
+  return m ? m[1].trim() : "Processo";
+}
+
+function extrairInfoBasicas(bloco) {
+  const campos = [
+    ["Autor", "autor"],
+    ["Réu", "reu"],
+    ["Vara", "vara"],
+    ["Valor da Causa", "valor_da_causa"],
+    ["Fase Atual", "fase_atual"],
+  ];
+  const dados = {};
+  for (const [campo, chave] of campos) {
+    const m = bloco.match(new RegExp(`-\\s*${escapeRegExp(campo)}:\\s*(.*)`));
+    dados[chave] = m ? m[1].trim() : "";
+  }
+  return dados;
+}
+
+function extrairLinhaDoTempo(bloco) {
+  const eventos = [];
+  const partes = bloco.trim().split(/\n(?=\*\*\d{2}\/\d{2}\/\d{4}\*\*\s*-)/);
+  for (const parteRaw of partes) {
+    const parte = parteRaw.trim();
+    if (!parte) continue;
+    const m = parte.match(/^\*\*(\d{2}\/\d{2}\/\d{4})\*\*\s*-\s*(.+)/);
+    if (!m) continue;
+    const data = m[1];
+    const movimentacao = m[2].trim().split("\n")[0].trim();
+    const resumoM = parte.match(/^>\s*(.+)$/m);
+    const docsM = parte.match(/-\s*Documentos juntados:\s*(.*)/);
+    const prazosM = parte.match(/-\s*Prazos:\s*(.*)/);
+    eventos.push({
+      data,
+      movimentacao,
+      resumo: resumoM ? resumoM[1].trim() : "",
+      documentos_juntados: docsM ? docsM[1].trim() : "",
+      prazos: prazosM ? prazosM[1].trim() : "",
+    });
+  }
+  return eventos;
+}
+
+function extrairLista(bloco) {
+  return bloco.trim().split("\n")
+    .filter(l => l.trim().startsWith("-"))
+    .map(l => l.trim().replace(/^-+\s*/, "").trim());
+}
+
+function extrairPrazos(bloco) {
+  function pega(emoji, titulo) {
+    const padrao = new RegExp(`${emoji}\\s*\\*?\\*?${titulo}\\*?\\*?:?\\s*\\n([\\s\\S]*?)(?=\\n🔴|\\n🟠|\\n🟡|$)`);
+    const m = bloco.match(padrao);
+    return m ? extrairLista(m[1]) : [];
+  }
+  return {
+    urgente: pega("🔴", "Urgente"),
+    atencao: pega("🟠", "Atenção"),
+    monitorar: pega("🟡", "Monitorar"),
+  };
+}
+
+function extrairTabela(bloco, colunas) {
+  const linhas = bloco.trim().split("\n")
+    .filter(l => l.trim().startsWith("|"))
+    .filter(l => !/^\|\s*-+\s*\|/.test(l.trim()));
+  const resultado = [];
+  for (const l of linhas.slice(1)) {
+    const celulas = l.trim().replace(/^\||\|$/g, "").split("|").map(c => c.trim());
+    if (celulas.length >= colunas.length && celulas.some(c => c !== "")) {
+      const obj = {};
+      colunas.forEach((c, i) => obj[c] = celulas[i]);
+      resultado.push(obj);
+    }
+  }
+  return resultado;
+}
+
+function extrairAtualizadoEm(texto) {
+  const m = texto.match(/\*Atualizado em (.+?)\*/);
+  return m ? m[1].trim() : "";
+}
+
+// Alguns movimentos.md escrevem o número seguido de texto extra na mesma linha, ex.:
+// "12710/26.8BELSB (Tribunal Administrativo de Círculo de Lisboa — ...)".
+// Ficamos só com o primeiro token (antes de espaço/parêntese) — senão o hash gerado
+// aqui não bate com o hash que o andamento.html calcula a partir do número limpo
+// que o cliente digita.
+function limparNumeroProcesso(numero) {
+  if (!numero) return "";
+  return numero.split(" (")[0].trim().split(/\s+/)[0];
+}
+
+function converter(texto, cliente) {
+  const numeroProcesso = limparNumeroProcesso(extrairCampoTopo(texto, "Número do Processo"));
+  return {
+    numero_processo: numeroProcesso,
+    cliente: cliente,
+    tipo_acao: extrairTitulo(texto),
+    data_analise: extrairCampoTopo(texto, "Data da Análise"),
+    informacoes_basicas: extrairInfoBasicas(extrairSecao(texto, "Informações Básicas")),
+    linha_do_tempo: extrairLinhaDoTempo(extrairSecao(texto, "Linha do Tempo de Movimentações")),
+    novas_movimentacoes: extrairLista(extrairSecao(texto, "Novas Movimentações")),
+    prazos: extrairPrazos(extrairSecao(texto, "Prazos e Diligências Pendentes")),
+    proximas_acoes: extrairLista(extrairSecao(texto, "Próximas Ações Sugeridas")),
+    evolucao: extrairTabela(extrairSecao(texto, "Evolução do Processo"), ["data", "evento", "fase", "impacto"]),
+    observacoes: extrairLista(extrairSecao(texto, "Observações Importantes")),
+    atualizado_em: extrairAtualizadoEm(texto),
+  };
+}
+
+document.getElementById("btnGerar").addEventListener("click", async () => {
+  limparMsg();
+  document.getElementById("resultado").style.display = "none";
+
+  const cliente = clienteInput.value.trim();
+  const dados = converter(arquivoTexto, cliente);
+
+  if (!dados.numero_processo) {
+    mostrarMsg("Não encontrei \"Número do Processo\" no arquivo. Confirme se é um movimentos.md gerado pela skill movimentacao, com o campo preenchido.", "erro");
+    return;
+  }
+
+  // Confere se o nome digitado bate EXATAMENTE com algum nome extraído do documento
+  // (Autor/Réu). Se não bater, avisa — mas não bloqueia, porque às vezes o cliente
+  // legitimamente não é a mesma pessoa citada como Autor/Réu no processo.
+  const avisos = [];
+  const candidatos = [
+    ...extrairNomesCandidatos(dados.informacoes_basicas.autor),
+    ...extrairNomesCandidatos(dados.informacoes_basicas.reu),
+  ];
+  const clienteNormalizado = normalizarTexto(dados.cliente);
+  const bateExato = candidatos.some(c => normalizarTexto(c) === clienteNormalizado);
+  if (candidatos.length && !bateExato) {
+    avisos.push({
+      texto: `⚠️ O nome digitado ("${dados.cliente}") não bate exatamente com o(s) nome(s) encontrado(s) no documento: ${candidatos.map(c => `"${c}"`).join(", ")}. ` +
+        `Se houver uma diferença de digitação (acento, "do"/"dos", etc.), corrija e gere de novo — senão o cliente não vai conseguir acessar o portal digitando o nome real dele.`,
+      tipo: "divergencia",
+    });
+  }
+
+  const hash = await sha256Hex(normalizarNumero(dados.numero_processo));
+  const json = JSON.stringify(dados, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  document.getElementById("r-numero").textContent = dados.numero_processo;
+  document.getElementById("r-cliente").textContent = dados.cliente;
+  document.getElementById("r-tipo").textContent = dados.tipo_acao;
+  document.getElementById("r-eventos").textContent = dados.linha_do_tempo.length;
+  document.getElementById("r-hash").textContent = hash + ".json";
+
+  const btnBaixar = document.getElementById("btnBaixar");
+  btnBaixar.href = url;
+  btnBaixar.download = hash + ".json";
+  btnBaixar.textContent = "⬇️ Baixar " + hash.slice(0, 10) + "….json";
+
+  const link = `andamento.html?numero=${encodeURIComponent(dados.numero_processo)}`;
+  document.getElementById("r-link").textContent = "Link para o cliente: " + link;
+  document.getElementById("btnCopiar").onclick = () => {
+    navigator.clipboard.writeText(window.location.href.replace(/gerar_processo\.html.*$/, "") + link);
+    document.getElementById("btnCopiar").textContent = "Copiado ✅";
+    setTimeout(() => { document.getElementById("btnCopiar").textContent = "Copiar link para o cliente"; }, 2000);
+  };
+
+  document.getElementById("resultado").style.display = "block";
+
+  if (!dados.linha_do_tempo.length) {
+    avisos.push({
+      texto: "Aviso: nenhum evento foi identificado na Linha do Tempo. O JSON foi gerado mesmo assim — confira o movimentos.md se isso não era esperado.",
+      tipo: "aviso",
+    });
+  }
+
+  if (avisos.length) {
+    // Se houver divergência de nome, ela é o aviso mais importante — usa o estilo dela.
+    const tipoFinal = avisos.some(a => a.tipo === "divergencia") ? "divergencia" : "aviso";
+    mostrarMsg(avisos.map(a => a.texto).join("<br><br>"), tipoFinal, true);
+  }
+});
+</script>
+
+</body>
+</html>

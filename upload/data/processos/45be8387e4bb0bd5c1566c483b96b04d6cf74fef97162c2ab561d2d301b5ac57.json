@@ -1,0 +1,81 @@
+{
+  "numero_processo": "1234567-89.2024.8.26.0100",
+  "cliente": "João Pereira da Silva",
+  "tipo_acao": "Ação de Reintegração de Posse",
+  "data_analise": "16/07/2026",
+  "informacoes_basicas": {
+    "autor": "João Pereira da Silva",
+    "reu": "Construtora XPTO Lda",
+    "vara": "3ª Vara Cível de Lisboa",
+    "valor_da_causa": "€ 45.000,00",
+    "fase_atual": "Cumprimento de Sentença — O processo encontra-se atualmente na fase de cumprimento de sentença, aguardando manifestação da parte executada após intimação para pagamento."
+  },
+  "linha_do_tempo": [
+    {
+      "data": "10/01/2025",
+      "movimentacao": "Distribuição da petição inicial",
+      "resumo": "Petição protocolada requerendo reintegração de posse do imóvel.",
+      "documentos_juntados": "Petição inicial, procuração, contrato de arrendamento",
+      "prazos": "—"
+    },
+    {
+      "data": "22/03/2025",
+      "movimentacao": "Citação do réu",
+      "resumo": "Réu citado para apresentar contestação em 15 dias.",
+      "documentos_juntados": "Certidão de citação",
+      "prazos": "15 dias para contestação"
+    },
+    {
+      "data": "14/06/2026",
+      "movimentacao": "Sentença proferida",
+      "resumo": "Sentença julgou procedente o pedido, determinando a reintegração de posse.",
+      "documentos_juntados": "Sentença",
+      "prazos": "10 dias para recurso"
+    }
+  ],
+  "novas_movimentacoes": [
+    "Sentença de procedência publicada em 14/06/2026, favorável ao cliente.",
+    "Iniciado prazo para cumprimento voluntário pela parte executada."
+  ],
+  "prazos": {
+    "urgente": [
+      "Verificar se a parte executada cumpriu voluntariamente até 25/07/2026"
+    ],
+    "atencao": [
+      "Preparar requerimento de cumprimento de sentença caso não haja pagamento voluntário"
+    ],
+    "monitorar": [
+      "Acompanhar eventual recurso da parte contrária"
+    ]
+  },
+  "proximas_acoes": [
+    "Aguardar prazo de cumprimento voluntário até 25/07/2026",
+    "Caso não cumprido, requerer cumprimento de sentença",
+    "Informar cliente sobre a sentença favorável"
+  ],
+  "evolucao": [
+    {
+      "data": "10/01/2025",
+      "evento": "Distribuição",
+      "fase": "Conhecimento",
+      "impacto": "Início do processo"
+    },
+    {
+      "data": "22/03/2025",
+      "evento": "Citação",
+      "fase": "Conhecimento",
+      "impacto": "Réu citado"
+    },
+    {
+      "data": "14/06/2026",
+      "evento": "Sentença",
+      "fase": "Cumprimento de Sentença",
+      "impacto": "Procedência do pedido"
+    }
+  ],
+  "observacoes": [
+    "Cliente deve ser informado imediatamente sobre a sentença favorável.",
+    ""
+  ],
+  "atualizado_em": "16/07/2026 às 14:30"
+}
